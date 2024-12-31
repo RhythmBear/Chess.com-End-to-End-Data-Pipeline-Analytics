@@ -1,0 +1,4 @@
+*Data/*
+*venv
+*.env
+*.venv
