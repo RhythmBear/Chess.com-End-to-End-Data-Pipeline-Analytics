@@ -3,7 +3,7 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from airflow.decorators import dag, task
-from include.python_scripts import extract_and_load_chess_data
+from scripts.python_scripts import *
 from datetime import datetime
 
 
