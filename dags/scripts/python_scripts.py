@@ -14,12 +14,13 @@ az_hook = WasbHook(wasb_conn_id='azure_chess_storage') # Using the Storage Accou
 def extract_and_load_chess_data(username: str, year: int, month: int) -> list:
     """
     Fetch chess game data for a specific user and month from Chess.com API.
-    
-    :param username: Chess.com username
+    :param username: chess.com username
     :param year: Year of the games
     :param month: Month of the games (1-12)
     :return: List of games in JSON format
+
     """
+
     # The headers are used to mimic a browser request because it returns a 403 error if it detects that it's a bot
     headers = {
          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
