@@ -18549,3 +18549,81 @@ File Path                       PID    Runtime      # DAGs    # Errors  Last Run
 /opt/airflow/dags/chess_dag.py                           1           0  0.30s           2025-01-09T08:45:47                      12
 ================================================================================
 [2025-01-09T08:46:39.923+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-01-29T16:03:02.476+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2025-01-29T16:03:02.481+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-01-29T16:03:02.483+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-01-29T16:03:02.484+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2025-01-29T16:03:02.509+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2025-01-29T16:03:04.079+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-01-29T16:03:04.079+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-01-29T16:03:05.194+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
+[2025-01-29T16:04:08.796+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2025-01-29T16:04:08.797+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-01-29T16:04:08.798+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-01-29T16:04:08.798+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2025-01-29T16:04:08.805+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2025-01-29T16:04:08.991+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                         PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run      Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  ----------  ----------------------
+/opt/airflow/dags/chess_dag.py     40  0.04s             0           0                                                   0
+================================================================================
+[2025-01-29T16:04:39.189+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.81s           2025-01-29T16:04:09                      12
+================================================================================
+[2025-01-29T16:05:09.376+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.47s           2025-01-29T16:04:40                      12
+================================================================================
+[2025-01-29T16:05:39.395+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.65s           2025-01-29T16:05:11                      12
+================================================================================
+[2025-01-29T16:06:09.893+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.61s           2025-01-29T16:05:42                      12
+================================================================================
+[2025-01-29T16:06:40.325+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.46s           2025-01-29T16:06:12                      12
+================================================================================
+[2025-01-29T16:07:10.507+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.62s           2025-01-29T16:06:43                      12
+================================================================================
+[2025-01-29T16:07:40.761+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/chess_dag.py                           1           0  0.47s           2025-01-29T16:07:14                      12
+================================================================================
+[2025-01-29T16:07:41.918+0000] {manager.py:465} INFO - Exiting gracefully upon receiving signal 15
