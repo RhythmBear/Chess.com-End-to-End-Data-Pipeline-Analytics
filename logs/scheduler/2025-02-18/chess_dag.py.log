@@ -8155,3 +8155,17 @@ SyntaxError: invalid syntax
 [2025-02-18T17:04:45.298+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:04:45.298+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-02-18T17:04:45.339+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:04:45.339+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-01 00:00:00+00:00, run_after=2025-03-01 00:00:00+00:00
 [2025-02-18T17:04:45.369+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.471 seconds
+[2025-02-18T17:05:15.457+0000] {processor.py:186} INFO - Started process (PID=4035) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:15.460+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-18T17:05:15.463+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:15.462+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:15.787+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:15.825+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:15.825+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T17:05:15.874+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:15.874+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-01 00:00:00+00:00, run_after=2025-03-01 00:00:00+00:00
+[2025-02-18T17:05:15.903+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.457 seconds
+[2025-02-18T17:05:46.203+0000] {processor.py:186} INFO - Started process (PID=4043) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:46.205+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-18T17:05:46.211+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:46.210+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:46.648+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-18T17:05:46.720+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:46.719+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-18T17:05:46.782+0000] {logging_mixin.py:190} INFO - [2025-02-18T17:05:46.781+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-01 00:00:00+00:00, run_after=2025-03-01 00:00:00+00:00
+[2025-02-18T17:05:46.812+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.626 seconds
