@@ -1,0 +1,162 @@
+[2025-02-14T21:17:43.870+0000] {processor.py:186} INFO - Started process (PID=44) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:17:43.874+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:17:43.885+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:17:43.884+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:17:45.315+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:17:45.377+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:17:45.377+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:17:45.495+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:17:45.494+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:17:45.551+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 1.713 seconds
+[2025-02-14T21:18:16.020+0000] {processor.py:186} INFO - Started process (PID=52) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:16.023+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:18:16.034+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:16.033+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:19.042+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:19.151+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:19.150+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:18:19.261+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:19.260+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:18:19.297+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 3.299 seconds
+[2025-02-14T21:18:49.389+0000] {processor.py:186} INFO - Started process (PID=60) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:49.394+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:18:49.398+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:49.398+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:50.034+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:18:50.066+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:50.066+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:18:50.117+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:18:50.116+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:18:50.164+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.790 seconds
+[2025-02-14T21:19:20.645+0000] {processor.py:186} INFO - Started process (PID=68) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:20.651+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:19:20.661+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:20.660+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:21.348+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:21.393+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:21.393+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:19:21.483+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:21.483+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:19:21.558+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.941 seconds
+[2025-02-14T21:19:52.024+0000] {processor.py:186} INFO - Started process (PID=76) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:52.027+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:19:52.032+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:52.031+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:52.612+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:19:52.644+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:52.644+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:19:52.702+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:19:52.702+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:19:52.747+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.739 seconds
+[2025-02-14T21:20:23.183+0000] {processor.py:186} INFO - Started process (PID=84) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:23.189+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:20:23.210+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:23.206+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:24.068+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:24.106+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:24.106+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:20:24.159+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:24.158+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:20:24.193+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 1.040 seconds
+[2025-02-14T21:20:54.564+0000] {processor.py:186} INFO - Started process (PID=92) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:54.567+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:20:54.577+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:54.576+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:55.393+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:20:55.450+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:55.449+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:20:55.493+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:20:55.492+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:20:55.531+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.988 seconds
+[2025-02-14T21:21:25.931+0000] {processor.py:186} INFO - Started process (PID=100) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:25.933+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:21:26.218+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:26.218+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:26.609+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:26.652+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:26.652+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:21:26.711+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:26.711+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:21:26.751+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.836 seconds
+[2025-02-14T21:21:57.525+0000] {processor.py:186} INFO - Started process (PID=108) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:57.527+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:21:57.533+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:57.532+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:57.993+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:21:58.046+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:58.045+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:21:58.122+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:21:58.122+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:21:58.171+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.666 seconds
+[2025-02-14T21:22:28.620+0000] {processor.py:186} INFO - Started process (PID=116) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:22:28.630+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:22:28.636+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:22:28.635+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:22:29.120+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:22:29.204+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:22:29.202+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:22:29.310+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:22:29.309+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:22:29.387+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.789 seconds
+[2025-02-14T21:22:59.893+0000] {processor.py:186} INFO - Started process (PID=125) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:22:59.898+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:22:59.905+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:22:59.904+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:23:00.273+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:23:00.330+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:23:00.329+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:23:00.402+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:23:00.401+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:23:00.452+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.578 seconds
+[2025-02-14T21:23:30.560+0000] {processor.py:186} INFO - Started process (PID=133) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:23:30.562+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:23:30.568+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:23:30.567+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:23:30.892+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:23:30.933+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:23:30.933+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:23:30.993+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:23:30.992+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:23:31.071+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.528 seconds
+[2025-02-14T21:24:01.407+0000] {processor.py:186} INFO - Started process (PID=141) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:01.410+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:24:01.418+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:01.417+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:01.895+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:01.942+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:01.941+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:24:02.005+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:02.004+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:24:02.056+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.668 seconds
+[2025-02-14T21:24:32.387+0000] {processor.py:186} INFO - Started process (PID=149) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:32.389+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:24:32.396+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:32.396+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:32.867+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:24:32.918+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:32.918+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:24:32.981+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:24:32.980+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:24:33.034+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.665 seconds
+[2025-02-14T21:25:03.431+0000] {processor.py:186} INFO - Started process (PID=157) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:03.434+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:25:03.441+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:03.440+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:03.946+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:03.985+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:03.985+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:25:04.031+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:04.031+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:25:04.069+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.650 seconds
+[2025-02-14T21:25:34.368+0000] {processor.py:186} INFO - Started process (PID=171) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:34.370+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:25:34.376+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:34.375+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:34.776+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:25:34.823+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:34.822+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:25:34.883+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:25:34.882+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:25:34.927+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.579 seconds
+[2025-02-14T21:26:05.331+0000] {processor.py:186} INFO - Started process (PID=179) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:05.338+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:26:05.348+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:05.347+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:06.087+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:06.168+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:06.167+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:26:06.258+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:06.257+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:26:06.312+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 1.016 seconds
+[2025-02-14T21:26:36.628+0000] {processor.py:186} INFO - Started process (PID=187) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:36.630+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:26:36.635+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:36.635+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:37.102+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:26:37.170+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:37.169+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:26:37.227+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:26:37.227+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:26:37.274+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.661 seconds
+[2025-02-14T21:27:07.627+0000] {processor.py:186} INFO - Started process (PID=195) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:07.632+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:27:07.638+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:07.637+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:08.077+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:08.150+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:08.149+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:27:08.237+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:08.236+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:27:08.287+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.678 seconds
+[2025-02-14T21:27:38.651+0000] {processor.py:186} INFO - Started process (PID=203) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:38.653+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:27:38.659+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:38.658+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:39.004+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:27:39.051+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:39.050+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:27:39.130+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:27:39.130+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:27:39.190+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.555 seconds
+[2025-02-14T21:28:09.525+0000] {processor.py:186} INFO - Started process (PID=211) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:09.531+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:28:09.536+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:09.535+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:10.043+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:10.082+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:10.082+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:28:10.125+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:10.125+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:28:10.157+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.654 seconds
+[2025-02-14T21:28:40.325+0000] {processor.py:186} INFO - Started process (PID=219) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:40.330+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:28:40.337+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:40.336+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:40.788+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:28:40.849+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:40.848+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:28:40.900+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:28:40.899+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:28:40.939+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.639 seconds
+[2025-02-14T21:29:11.315+0000] {processor.py:186} INFO - Started process (PID=227) to work on /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:29:11.318+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/chess_dag.py for tasks to queue
+[2025-02-14T21:29:11.326+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:29:11.325+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:29:11.697+0000] {processor.py:925} INFO - DAG(s) 'pull_data_from_chess_api' retrieved from /opt/airflow/dags/chess_dag.py
+[2025-02-14T21:29:11.748+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:29:11.748+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-02-14T21:29:11.807+0000] {logging_mixin.py:190} INFO - [2025-02-14T21:29:11.807+0000] {dag.py:4180} INFO - Setting next_dagrun for pull_data_from_chess_api to 2025-02-09 00:00:00+00:00, run_after=2025-02-16 00:00:00+00:00
+[2025-02-14T21:29:11.845+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/chess_dag.py took 0.560 seconds
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
