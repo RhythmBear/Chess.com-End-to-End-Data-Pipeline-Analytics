@@ -1,0 +1,27 @@
+[2025-03-31T18:05:08.442+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T18:05:08.625+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.get_last_updated_date dataset_triggered__2025-03-31T18:04:45.046641+00:00 [queued]>
+[2025-03-31T18:05:08.732+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.get_last_updated_date dataset_triggered__2025-03-31T18:04:45.046641+00:00 [queued]>
+[2025-03-31T18:05:08.736+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T18:05:08.866+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): get_last_updated_date> on 2025-03-31 18:04:45.046641+00:00
+[2025-03-31T18:05:08.921+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=13516) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T18:05:08.936+0000] {standard_task_runner.py:72} INFO - Started process 13530 to run task
+[2025-03-31T18:05:08.927+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'get_last_updated_date', 'dataset_triggered__2025-03-31T18:04:45.046641+00:00', '--job-id', '1032', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmpufqwy6er']
+[2025-03-31T18:05:08.946+0000] {standard_task_runner.py:105} INFO - Job 1032: Subtask get_last_updated_date
+[2025-03-31T18:05:09.292+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.get_last_updated_date dataset_triggered__2025-03-31T18:04:45.046641+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T18:05:09.942+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='get_last_updated_date' AIRFLOW_CTX_EXECUTION_DATE='2025-03-31T18:04:45.046641+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2025-03-31T18:04:45.046641+00:00'
+[2025-03-31T18:05:09.950+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T18:05:09.967+0000] {sql.py:266} INFO - Executing: SELECT last_updated FROM chess_dw.fact_games ORDER BY last_updated DESC LIMIT 1;
+[2025-03-31T18:05:10.011+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:05:10.054+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:05:11.887+0000] {sql.py:509} INFO - Running statement: SELECT last_updated FROM chess_dw.fact_games ORDER BY last_updated DESC LIMIT 1;, parameters: None
+[2025-03-31T18:05:12.356+0000] {sql.py:518} INFO - Rows affected: 1
+[2025-03-31T18:05:12.721+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T18:05:12.723+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=load_data_warehouse, task_id=get_last_updated_date, run_id=dataset_triggered__2025-03-31T18:04:45.046641+00:00, execution_date=20250331T180445, start_date=20250331T180508, end_date=20250331T180512
+[2025-03-31T18:05:12.859+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-31T18:05:12.924+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2025-03-31T18:05:13.013+0000] {taskinstance.py:3900} INFO - 4 downstream tasks scheduled from follow-on schedule check
+[2025-03-31T18:05:13.028+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

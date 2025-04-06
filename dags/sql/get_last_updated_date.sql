@@ -1,0 +1,1 @@
+SELECT last_updated FROM chess_dw.fact_games ORDER BY last_updated DESC LIMIT 1;

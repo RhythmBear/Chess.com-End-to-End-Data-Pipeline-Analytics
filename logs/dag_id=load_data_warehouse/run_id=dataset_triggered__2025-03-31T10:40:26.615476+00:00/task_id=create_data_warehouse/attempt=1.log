@@ -1,0 +1,225 @@
+[2025-03-31T10:40:29.818+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T10:40:29.844+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T10:40:26.615476+00:00 [queued]>
+[2025-03-31T10:40:29.871+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T10:40:26.615476+00:00 [queued]>
+[2025-03-31T10:40:29.872+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T10:40:29.906+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): create_data_warehouse> on 2025-03-31 10:40:26.615476+00:00
+[2025-03-31T10:40:29.920+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1930) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T10:40:29.924+0000] {standard_task_runner.py:72} INFO - Started process 1939 to run task
+[2025-03-31T10:40:29.925+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'create_data_warehouse', 'dataset_triggered__2025-03-31T10:40:26.615476+00:00', '--job-id', '840', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmptazn2zfv']
+[2025-03-31T10:40:29.933+0000] {standard_task_runner.py:105} INFO - Job 840: Subtask create_data_warehouse
+[2025-03-31T10:40:30.025+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T10:40:26.615476+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T10:40:30.168+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='create_data_warehouse' AIRFLOW_CTX_EXECUTION_DATE='2025-03-31T10:40:26.615476+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2025-03-31T10:40:26.615476+00:00'
+[2025-03-31T10:40:30.170+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T10:40:30.172+0000] {sql.py:266} INFO - Executing: -- Fact Tables Creating
+CREATE SCHEMA IF NOT EXISTS chess_dw;
+CREATE TABLE IF NOT EXISTS chess_dw.fact_games (
+    game_url VARCHAR PRIMARY KEY,
+    game_date TIMESTAMP,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    game_duration_secs INTEGER,
+    time_control VARCHAR,
+    my_color VARCHAR,
+    my_rating INTEGER,
+    opponent_rating INTEGER,
+    my_result VARCHAR,
+    opponent_result VARCHAR,
+    game_fen VARCHAR,
+    opening_url VARCHAR,
+    game_pgn VARCHAR,
+    last_updated TIMESTAMP
+);
+
+
+-- Dimension tables creation
+CREATE TABLE IF NOT EXISTS chess_dw.dim_date (
+    date_id INTEGER PRIMARY KEY,
+    game_date DATE,
+    year INTEGER,
+    month INTEGER,
+    month_name VARCHAR,
+    day INTEGER,
+    day_of_the_week VARCHAR,
+    quarter INTEGER,
+    is_weekend BOOLEAN
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_openings (
+    pgn_eco_url VARCHAR PRIMARY KEY,
+    opening_name VARCHAR(3),
+    opening_family VARCHAR
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_users (
+    user_id VARCHAR PRIMARY KEY,
+    full_name VARCHAR,
+    nationality VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_time_control (
+    time_control VARCHAR PRIMARY KEY,
+    time_class VARCHAR,
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_results (
+    result_code VARCHAR PRIMARY KEY,
+    result VARCHAR,
+    description VARCHAR
+);
+[2025-03-31T10:40:30.186+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T10:40:30.198+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T10:40:32.107+0000] {sql.py:509} INFO - Running statement: -- Fact Tables Creating
+CREATE SCHEMA IF NOT EXISTS chess_dw;
+CREATE TABLE IF NOT EXISTS chess_dw.fact_games (
+    game_url VARCHAR PRIMARY KEY,
+    game_date TIMESTAMP,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    game_duration_secs INTEGER,
+    time_control VARCHAR,
+    my_color VARCHAR,
+    my_rating INTEGER,
+    opponent_rating INTEGER,
+    my_result VARCHAR,
+    opponent_result VARCHAR,
+    game_fen VARCHAR,
+    opening_url VARCHAR,
+    game_pgn VARCHAR,
+    last_updated TIMESTAMP
+);
+
+
+-- Dimension tables creation
+CREATE TABLE IF NOT EXISTS chess_dw.dim_date (
+    date_id INTEGER PRIMARY KEY,
+    game_date DATE,
+    year INTEGER,
+    month INTEGER,
+    month_name VARCHAR,
+    day INTEGER,
+    day_of_the_week VARCHAR,
+    quarter INTEGER,
+    is_weekend BOOLEAN
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_openings (
+    pgn_eco_url VARCHAR PRIMARY KEY,
+    opening_name VARCHAR(3),
+    opening_family VARCHAR
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_users (
+    user_id VARCHAR PRIMARY KEY,
+    full_name VARCHAR,
+    nationality VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_time_control (
+    time_control VARCHAR PRIMARY KEY,
+    time_class VARCHAR,
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_results (
+    result_code VARCHAR PRIMARY KEY,
+    result VARCHAR,
+    description VARCHAR
+);, parameters: None
+[2025-03-31T10:40:32.519+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 272, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 456, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 514, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near ")"
+LINE 52: );
+         ^
+
+[2025-03-31T10:40:32.541+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=load_data_warehouse, task_id=create_data_warehouse, run_id=dataset_triggered__2025-03-31T10:40:26.615476+00:00, execution_date=20250331T104026, start_date=20250331T104029, end_date=20250331T104032
+[2025-03-31T10:40:32.567+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T10:40:32.568+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 840 for task create_data_warehouse (syntax error at or near ")"
+LINE 52: );
+         ^
+; 1939)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 272, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 456, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 514, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near ")"
+LINE 52: );
+         ^
+
+[2025-03-31T10:40:32.602+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-31T10:40:32.616+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2025-03-31T10:40:32.633+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-31T10:40:32.636+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

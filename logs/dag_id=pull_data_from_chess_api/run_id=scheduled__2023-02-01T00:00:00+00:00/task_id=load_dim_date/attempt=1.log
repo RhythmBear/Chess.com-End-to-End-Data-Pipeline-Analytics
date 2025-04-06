@@ -1,0 +1,54 @@
+[2025-03-31T17:24:19.524+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T17:24:19.707+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_dim_date scheduled__2023-02-01T00:00:00+00:00 [queued]>
+[2025-03-31T17:24:19.800+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_dim_date scheduled__2023-02-01T00:00:00+00:00 [queued]>
+[2025-03-31T17:24:19.802+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T17:24:20.026+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): load_dim_date> on 2023-02-01 00:00:00+00:00
+[2025-03-31T17:24:20.151+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=8392) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T17:24:20.195+0000] {standard_task_runner.py:72} INFO - Started process 8470 to run task
+[2025-03-31T17:24:20.268+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pull_data_from_chess_api', 'load_dim_date', 'scheduled__2023-02-01T00:00:00+00:00', '--job-id', '898', '--raw', '--subdir', 'DAGS_FOLDER/collect_chess_data_dag.py', '--cfg-path', '/tmp/tmppjuulygx']
+[2025-03-31T17:24:20.290+0000] {standard_task_runner.py:105} INFO - Job 898: Subtask load_dim_date
+[2025-03-31T17:24:21.147+0000] {task_command.py:467} INFO - Running <TaskInstance: pull_data_from_chess_api.load_dim_date scheduled__2023-02-01T00:00:00+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T17:24:21.886+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pull_data_from_chess_api' AIRFLOW_CTX_TASK_ID='load_dim_date' AIRFLOW_CTX_EXECUTION_DATE='2023-02-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-02-01T00:00:00+00:00'
+[2025-03-31T17:24:21.889+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T17:24:22.004+0000] {logging_mixin.py:190} INFO - Received File Name: silver/fact-2023-02-games.parquet
+[2025-03-31T17:24:22.463+0000] {connection.py:531} ERROR - Unable to retrieve connection from secrets backend (EnvironmentVariablesBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 526, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 116, in get_connection
+    return self.deserialize_connection(conn_id=conn_id, value=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 70, in deserialize_connection
+    return Connection(conn_id=conn_id, uri=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 481, in _initialize_instance
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 479, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 169, in __init__
+    self._parse_from_uri(uri)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 257, in _parse_from_uri
+    self.port = uri_parts.port
+                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/parse.py", line 182, in port
+    raise ValueError(f"Port could not be cast to integer value as {port!r}")
+ValueError: Port could not be cast to integer value as 'DefaultEndpointsProtocol=https;AccountName=rbchesssa;AccountKey=lG9W+utkpTNorE0rTLlfDMUZsTPleXk6pXv6NnfDTi'
+[2025-03-31T17:24:22.548+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_storage'
+[2025-03-31T17:24:36.050+0000] {logging_mixin.py:190} INFO - File To be loaded has (111, 7)
+[2025-03-31T17:24:39.533+0000] {logging_mixin.py:190} INFO - Successfully Loaded to Azure Storage as gold/dim_date.parquet
+[2025-03-31T17:24:39.557+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-31T17:24:39.671+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T17:24:39.686+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pull_data_from_chess_api, task_id=load_dim_date, run_id=scheduled__2023-02-01T00:00:00+00:00, execution_date=20230201T000000, start_date=20250331T172419, end_date=20250331T172439
+[2025-03-31T17:24:39.923+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-31T17:24:40.158+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-31T17:24:40.232+0000] {standard_task_runner.py:217} INFO - Process not found (most likely exited), stop collecting metrics

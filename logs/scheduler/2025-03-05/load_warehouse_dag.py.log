@@ -1,0 +1,85 @@
+[2025-03-05T17:28:46.500+0000] {processor.py:186} INFO - Started process (PID=2233) to work on /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:46.501+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/load_warehouse_dag.py for tasks to queue
+[2025-03-05T17:28:46.502+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:46.502+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:46.506+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:46.505+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/load_warehouse_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/load_warehouse_dag.py", line 25
+    ) as dag:
+             ^
+IndentationError: expected an indented block after 'with' statement on line 16
+[2025-03-05T17:28:46.506+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:46.528+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/load_warehouse_dag.py took 0.036 seconds
+[2025-03-05T17:28:47.517+0000] {processor.py:186} INFO - Started process (PID=2234) to work on /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:47.518+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/load_warehouse_dag.py for tasks to queue
+[2025-03-05T17:28:47.520+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:47.520+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:47.524+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:47.523+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/load_warehouse_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/load_warehouse_dag.py", line 25
+    ) as dag:
+             ^
+IndentationError: expected an indented block after 'with' statement on line 16
+[2025-03-05T17:28:47.525+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:47.547+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/load_warehouse_dag.py took 0.039 seconds
+[2025-03-05T17:28:51.587+0000] {processor.py:186} INFO - Started process (PID=2235) to work on /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:51.588+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/load_warehouse_dag.py for tasks to queue
+[2025-03-05T17:28:51.590+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:51.590+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:51.596+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:51.595+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/load_warehouse_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/load_warehouse_dag.py", line 25
+    ) as dag:
+             ^
+IndentationError: expected an indented block after 'with' statement on line 16
+[2025-03-05T17:28:51.598+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:51.618+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/load_warehouse_dag.py took 0.040 seconds
+[2025-03-05T17:28:54.641+0000] {processor.py:186} INFO - Started process (PID=2236) to work on /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:54.642+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/load_warehouse_dag.py for tasks to queue
+[2025-03-05T17:28:54.644+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:54.644+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:54.648+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:54.646+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/load_warehouse_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/load_warehouse_dag.py", line 25
+    ) as dag:
+             ^
+IndentationError: expected an indented block after 'with' statement on line 16
+[2025-03-05T17:28:54.648+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:54.667+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/load_warehouse_dag.py took 0.034 seconds
+[2025-03-05T17:28:58.715+0000] {processor.py:186} INFO - Started process (PID=2243) to work on /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:58.716+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/load_warehouse_dag.py for tasks to queue
+[2025-03-05T17:28:58.719+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:58.718+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:58.735+0000] {logging_mixin.py:190} INFO - [2025-03-05T17:28:58.733+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/load_warehouse_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/load_warehouse_dag.py", line 25
+    ) as dag:
+             ^
+IndentationError: expected an indented block after 'with' statement on line 16
+[2025-03-05T17:28:58.736+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/load_warehouse_dag.py
+[2025-03-05T17:28:58.772+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/load_warehouse_dag.py took 0.071 seconds

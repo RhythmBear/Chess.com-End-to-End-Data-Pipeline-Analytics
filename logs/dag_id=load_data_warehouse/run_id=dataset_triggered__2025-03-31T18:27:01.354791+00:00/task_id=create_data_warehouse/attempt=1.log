@@ -1,0 +1,142 @@
+[2025-03-31T18:27:04.132+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T18:27:04.157+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T18:27:01.354791+00:00 [queued]>
+[2025-03-31T18:27:04.172+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T18:27:01.354791+00:00 [queued]>
+[2025-03-31T18:27:04.173+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T18:27:04.191+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): create_data_warehouse> on 2025-03-31 18:27:01.354791+00:00
+[2025-03-31T18:27:04.202+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=17394) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T18:27:04.204+0000] {standard_task_runner.py:72} INFO - Started process 17403 to run task
+[2025-03-31T18:27:04.205+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'create_data_warehouse', 'dataset_triggered__2025-03-31T18:27:01.354791+00:00', '--job-id', '1136', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmpfv5t5x_p']
+[2025-03-31T18:27:04.209+0000] {standard_task_runner.py:105} INFO - Job 1136: Subtask create_data_warehouse
+[2025-03-31T18:27:04.277+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.create_data_warehouse dataset_triggered__2025-03-31T18:27:01.354791+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T18:27:04.407+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='create_data_warehouse' AIRFLOW_CTX_EXECUTION_DATE='2025-03-31T18:27:01.354791+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2025-03-31T18:27:01.354791+00:00'
+[2025-03-31T18:27:04.410+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T18:27:04.413+0000] {sql.py:266} INFO - Executing: -- Fact Tables Creating
+CREATE SCHEMA IF NOT EXISTS chess_dw;
+CREATE TABLE IF NOT EXISTS chess_dw.fact_games (
+    game_url VARCHAR PRIMARY KEY,
+    game_date TIMESTAMP,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    game_duration_secs INTEGER,
+    time_control VARCHAR,
+    my_color VARCHAR,
+    my_rating INTEGER,
+    opponent_rating INTEGER,
+    my_result VARCHAR,
+    opponent_result VARCHAR,
+    game_fen VARCHAR,
+    opening_url VARCHAR,
+    game_pgn VARCHAR,
+    last_updated TIMESTAMP
+);
+
+
+-- Dimension tables creation
+CREATE TABLE IF NOT EXISTS chess_dw.dim_date (
+    date_id INTEGER PRIMARY KEY,
+    game_date DATE,
+    year INTEGER,
+    month INTEGER,
+    month_name VARCHAR,
+    day INTEGER,
+    day_of_the_week VARCHAR,
+    quarter INTEGER,
+    is_weekend BOOLEAN
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_openings (
+    pgn_eco_url VARCHAR PRIMARY KEY,
+    opening_name VARCHAR,
+    opening_family VARCHAR,
+    opening_eco_code VARCHAR
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_users (
+    user_id VARCHAR PRIMARY KEY,
+    full_name VARCHAR,
+    nationality VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_time_control (
+    time_control VARCHAR PRIMARY KEY,
+    time_class VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_results (
+    result_code VARCHAR PRIMARY KEY,
+    result VARCHAR,
+    description VARCHAR
+);
+[2025-03-31T18:27:04.424+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:27:04.436+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:27:06.268+0000] {sql.py:509} INFO - Running statement: -- Fact Tables Creating
+CREATE SCHEMA IF NOT EXISTS chess_dw;
+CREATE TABLE IF NOT EXISTS chess_dw.fact_games (
+    game_url VARCHAR PRIMARY KEY,
+    game_date TIMESTAMP,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    game_duration_secs INTEGER,
+    time_control VARCHAR,
+    my_color VARCHAR,
+    my_rating INTEGER,
+    opponent_rating INTEGER,
+    my_result VARCHAR,
+    opponent_result VARCHAR,
+    game_fen VARCHAR,
+    opening_url VARCHAR,
+    game_pgn VARCHAR,
+    last_updated TIMESTAMP
+);
+
+
+-- Dimension tables creation
+CREATE TABLE IF NOT EXISTS chess_dw.dim_date (
+    date_id INTEGER PRIMARY KEY,
+    game_date DATE,
+    year INTEGER,
+    month INTEGER,
+    month_name VARCHAR,
+    day INTEGER,
+    day_of_the_week VARCHAR,
+    quarter INTEGER,
+    is_weekend BOOLEAN
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_openings (
+    pgn_eco_url VARCHAR PRIMARY KEY,
+    opening_name VARCHAR,
+    opening_family VARCHAR,
+    opening_eco_code VARCHAR
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_users (
+    user_id VARCHAR PRIMARY KEY,
+    full_name VARCHAR,
+    nationality VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_time_control (
+    time_control VARCHAR PRIMARY KEY,
+    time_class VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_results (
+    result_code VARCHAR PRIMARY KEY,
+    result VARCHAR,
+    description VARCHAR
+);, parameters: None
+[2025-03-31T18:27:06.961+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T18:27:06.962+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=load_data_warehouse, task_id=create_data_warehouse, run_id=dataset_triggered__2025-03-31T18:27:01.354791+00:00, execution_date=20250331T182701, start_date=20250331T182704, end_date=20250331T182706
+[2025-03-31T18:27:07.034+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-31T18:27:07.064+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2025-03-31T18:27:07.114+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-31T18:27:07.117+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

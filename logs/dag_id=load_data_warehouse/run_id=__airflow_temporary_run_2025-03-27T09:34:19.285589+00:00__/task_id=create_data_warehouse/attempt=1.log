@@ -1,0 +1,311 @@
+[2025-03-27T09:34:23.019+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-27T09:34:23.043+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse __airflow_temporary_run_2025-03-27T09:34:19.285589+00:00__ [queued]>
+[2025-03-27T09:34:23.051+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.create_data_warehouse __airflow_temporary_run_2025-03-27T09:34:19.285589+00:00__ [queued]>
+[2025-03-27T09:34:23.051+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-27T09:34:23.067+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): create_data_warehouse> on 2025-03-27 09:34:19.285565+00:00
+[2025-03-27T09:34:23.076+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=4050) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-27T09:34:23.077+0000] {standard_task_runner.py:72} INFO - Started process 4059 to run task
+[2025-03-27T09:34:23.083+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'create_data_warehouse', '__***_temporary_run_2025-03-27T09:34:19.285589+00:00__', '--job-id', '797', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmph63xpl8a']
+[2025-03-27T09:34:23.085+0000] {standard_task_runner.py:105} INFO - Job 797: Subtask create_data_warehouse
+[2025-03-27T09:34:23.149+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.create_data_warehouse __airflow_temporary_run_2025-03-27T09:34:19.285589+00:00__ [running]> on host 8de4e0a4beb2
+[2025-03-27T09:34:23.242+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='create_data_warehouse' AIRFLOW_CTX_EXECUTION_DATE='2025-03-27T09:34:19.285565+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='__***_temporary_run_2025-03-27T09:34:19.285589+00:00__'
+[2025-03-27T09:34:23.244+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-27T09:34:23.250+0000] {sql.py:266} INFO - Executing: -- Fact Tables Creating
+CREATE SCHEMA IF NOT EXISTS chess_dw;
+CREATE TABLE IF NOT EXISTS chess_dw.fact_games (
+    game_url VARCHAR PRIMARY KEY,
+    game_date TIMESTAMP,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    game_duration_secs INTEGER,
+    time_control VARCHAR,
+    my_color VARCHAR,
+    my_rating INTEGER,
+    opponent_rating INTEGER,
+    my_result VARCHAR,
+    opponent_result VARCHAR,
+    game_fen VARCHAR,
+    opening_url VARCHAR,
+    game_pgn VARCHAR,
+    last_updated TIMESTAMP
+);
+
+
+-- Dimension tables creation
+CREATE TABLE IF NOT EXISTS chess_dw.dim_date (
+    date_id INTEGER PRIMARY KEY,
+    game_date DATE,
+    year INTEGER,
+    month INTEGER,
+    month_name VARCHAR,
+    day INTEGER,
+    day_of_the_week VARCHAR,
+    quarter INTEGER,
+    is_weekend BOOLEAN
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_openings (
+    pgn_eco_url VARCHAR PRIMARY KEY,
+    opening_name VARCHAR(3),
+    opening_family VARCHAR,
+    eco_code VARCHAR
+);
+
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_users (
+    user_id VARCHAR PRIMARY KEY,
+    full_name VARCHAR,
+    nationality VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_time_control (
+    time_control VARCHAR PRIMARY KEY,
+    time_class VARCHAR,
+);
+
+CREATE TABLE IF NOT EXISTS chess_dw.dim_results (
+    result_code VARCHAR PRIMARY KEY,
+    result VARCHAR,
+    description VARCHAR
+);
+[2025-03-27T09:34:23.260+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-27T09:34:23.269+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-27T09:34:33.153+0000] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2025-03-27T09:34:33.154+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-27T09:34:33.160+0000] {process_utils.py:132} INFO - Sending 15 to group 4059. PIDs of all processes in the group: [4059]
+[2025-03-27T09:34:33.160+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 4059
+[2025-03-27T09:35:06.139+0000] {taskinstance.py:3092} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-03-27T09:35:06.152+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 272, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 452, in run
+    with self._create_autocommit_connection(autocommit) as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 574, in _create_autocommit_connection
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/postgres/hooks/postgres.py", line 176, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "chess-dw.postgres.database.azure.com" (40.75.102.191), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "chess-dw.postgres.database.azure.com" (40.75.102.191), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    with contextlib.suppress(jinja2.TemplateSyntaxError, jinja2.UndefinedError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 440, in __init__
+    def __init__(self, *exceptions):
+    
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3094, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2025-03-27T09:35:06.165+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=load_data_warehouse, task_id=create_data_warehouse, run_id=__***_temporary_run_2025-03-27T09:34:19.285589+00:00__, execution_date=20250327T093419, start_date=20250327T093423, end_date=20250327T093506
+[2025-03-27T09:35:06.183+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-27T09:35:06.184+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 797 for task create_data_warehouse ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(load_data_warehouse, create_data_warehouse, __***_temporary_run_2025-03-27T09:34:19.285589+00:00__, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'create_data_warehouse', 'dag_id': 'load_data_warehouse', 'run_id': '__airflow_temporary_run_2025-03-27T09:34:19.285589+00:00__', 'map_index': -1, 'start_date': datetime.datetime(2025, 3, 27, 9, 34, 23, 43759, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2025, 3, 27, 9, 35, 6, 165236, tzinfo=Timezone('UTC')), 'duration': 43}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 4059)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 272, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 452, in run
+    with self._create_autocommit_connection(autocommit) as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 574, in _create_autocommit_connection
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/postgres/hooks/postgres.py", line 176, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "chess-dw.postgres.database.azure.com" (40.75.102.191), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "chess-dw.postgres.database.azure.com" (40.75.102.191), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    with contextlib.suppress(jinja2.TemplateSyntaxError, jinja2.UndefinedError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 440, in __init__
+    def __init__(self, *exceptions):
+    
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3094, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.ForeignKeyViolation: insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(load_data_warehouse, create_data_warehouse, __***_temporary_run_2025-03-27T09:34:19.285589+00:00__, -1) is not present in table "task_instance".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 327, in _run_raw_task
+    ti.handle_failure(e, test_mode, context, session=session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3427, in handle_failure
+    _handle_failure(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 139, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 1243, in _handle_failure
+    TaskInstance.save_to_db(failure_context["ti"], session)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 139, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3399, in save_to_db
+    session.flush()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
+    self._flush(objects)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3588, in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
+    flush_context.execute()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    _emit_insert_statements(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
+    result = connection._execute_20(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(load_data_warehouse, create_data_warehouse, __***_temporary_run_2025-03-27T09:34:19.285589+00:00__, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'create_data_warehouse', 'dag_id': 'load_data_warehouse', 'run_id': '__airflow_temporary_run_2025-03-27T09:34:19.285589+00:00__', 'map_index': -1, 'start_date': datetime.datetime(2025, 3, 27, 9, 34, 23, 43759, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2025, 3, 27, 9, 35, 6, 165236, tzinfo=Timezone('UTC')), 'duration': 43}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[2025-03-27T09:35:06.249+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=4059, status='terminated', exitcode=1, started='09:34:22') (4059) terminated with exit code 1

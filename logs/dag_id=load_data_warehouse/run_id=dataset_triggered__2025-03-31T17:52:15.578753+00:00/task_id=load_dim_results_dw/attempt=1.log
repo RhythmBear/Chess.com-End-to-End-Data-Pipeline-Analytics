@@ -1,0 +1,24 @@
+[2025-03-31T17:53:26.469+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T17:53:27.652+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.load_dim_results_dw dataset_triggered__2025-03-31T17:52:15.578753+00:00 [queued]>
+[2025-03-31T17:53:28.067+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.load_dim_results_dw dataset_triggered__2025-03-31T17:52:15.578753+00:00 [queued]>
+[2025-03-31T17:53:28.070+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T17:53:28.313+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): load_dim_results_dw> on 2025-03-31 17:52:15.578753+00:00
+[2025-03-31T17:53:28.855+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=12092) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T17:53:29.038+0000] {standard_task_runner.py:72} INFO - Started process 12296 to run task
+[2025-03-31T17:53:29.157+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'load_dim_results_dw', 'dataset_triggered__2025-03-31T17:52:15.578753+00:00', '--job-id', '1001', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmpgtgqjze6']
+[2025-03-31T17:53:29.404+0000] {standard_task_runner.py:105} INFO - Job 1001: Subtask load_dim_results_dw
+[2025-03-31T17:53:30.698+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.load_dim_results_dw dataset_triggered__2025-03-31T17:52:15.578753+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T17:53:32.443+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='load_dim_results_dw' AIRFLOW_CTX_EXECUTION_DATE='2025-03-31T17:52:15.578753+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2025-03-31T17:52:15.578753+00:00'
+[2025-03-31T17:53:32.517+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T17:53:37.403+0000] {logging_mixin.py:190} INFO - ✅ gold/dim_results.parquet Loaded: 15 rows, 3 columns
+[2025-03-31T17:53:37.451+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T17:53:37.521+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T17:53:49.080+0000] {logging_mixin.py:190} INFO - Successfully Loaded gold/dim_results.parquet Data to Postgres table dim_results
+[2025-03-31T17:53:49.090+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-31T17:53:49.183+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T17:53:49.186+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=load_data_warehouse, task_id=load_dim_results_dw, run_id=dataset_triggered__2025-03-31T17:52:15.578753+00:00, execution_date=20250331T175215, start_date=20250331T175327, end_date=20250331T175349
+[2025-03-31T17:53:49.367+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-31T17:53:49.499+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-31T17:53:49.529+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

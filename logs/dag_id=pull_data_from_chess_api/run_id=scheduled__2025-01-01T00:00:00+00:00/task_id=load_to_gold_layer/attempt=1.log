@@ -1,0 +1,253 @@
+[2025-03-07T12:29:02.775+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-07T12:29:02.798+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-03-07T12:29:02.808+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-03-07T12:29:02.809+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-07T12:29:02.827+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): load_to_gold_layer> on 2025-01-01 00:00:00+00:00
+[2025-03-07T12:29:02.834+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=8435) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-07T12:29:02.836+0000] {standard_task_runner.py:72} INFO - Started process 8436 to run task
+[2025-03-07T12:29:02.836+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pull_data_from_chess_api', 'load_to_gold_layer', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '361', '--raw', '--subdir', 'DAGS_FOLDER/collect_chess_data_dag.py', '--cfg-path', '/tmp/tmpomdf404f']
+[2025-03-07T12:29:02.838+0000] {standard_task_runner.py:105} INFO - Job 361: Subtask load_to_gold_layer
+[2025-03-07T12:29:02.895+0000] {task_command.py:467} INFO - Running <TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [running]> on host ebc50e07c8a4
+[2025-03-07T12:29:03.008+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pull_data_from_chess_api' AIRFLOW_CTX_TASK_ID='load_to_gold_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2025-03-07T12:29:03.009+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-07T12:29:03.028+0000] {logging_mixin.py:190} INFO - Execution Date: 2025-01-01
+[2025-03-07T12:29:03.030+0000] {connection.py:531} ERROR - Unable to retrieve connection from secrets backend (EnvironmentVariablesBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 526, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 116, in get_connection
+    return self.deserialize_connection(conn_id=conn_id, value=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 70, in deserialize_connection
+    return Connection(conn_id=conn_id, uri=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 481, in _initialize_instance
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 479, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 169, in __init__
+    self._parse_from_uri(uri)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 257, in _parse_from_uri
+    self.port = uri_parts.port
+                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/parse.py", line 182, in port
+    raise ValueError(f"Port could not be cast to integer value as {port!r}")
+ValueError: Port could not be cast to integer value as 'DefaultEndpointsProtocol=https;AccountName=rbchesssa;AccountKey=lG9W+utkpTNorE0rTLlfDMUZsTPleXk6pXv6NnfDTi'
+[2025-03-07T12:29:03.043+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_storage'
+[2025-03-07T12:29:06.442+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scripts/python_scripts.py", line 186, in load_to_gold_layer
+    """).fetchdf()
+        ^^^^^^^^^
+duckdb.duckdb.NotImplementedException: Not implemented Error: Unsupported type "TIME WITH TIME ZONE"
+[2025-03-07T12:29:06.458+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=pull_data_from_chess_api, task_id=load_to_gold_layer, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20250307T122902, end_date=20250307T122906
+[2025-03-07T12:29:06.476+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-07T12:29:06.476+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 361 for task load_to_gold_layer (Not implemented Error: Unsupported type "TIME WITH TIME ZONE"; 8436)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/scripts/python_scripts.py", line 186, in load_to_gold_layer
+    """).fetchdf()
+        ^^^^^^^^^
+duckdb.duckdb.NotImplementedException: Not implemented Error: Unsupported type "TIME WITH TIME ZONE"
+[2025-03-07T12:29:06.514+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-07T12:29:06.539+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-07T12:29:06.544+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-10T01:41:07.900+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-10T01:41:07.924+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-03-10T01:41:07.935+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [queued]>
+[2025-03-10T01:41:07.936+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-10T01:41:07.955+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): load_to_gold_layer> on 2025-01-01 00:00:00+00:00
+[2025-03-10T01:41:07.964+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=17763) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-10T01:41:07.966+0000] {standard_task_runner.py:72} INFO - Started process 17765 to run task
+[2025-03-10T01:41:07.967+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pull_data_from_chess_api', 'load_to_gold_layer', 'scheduled__2025-01-01T00:00:00+00:00', '--job-id', '561', '--raw', '--subdir', 'DAGS_FOLDER/collect_chess_data_dag.py', '--cfg-path', '/tmp/tmpodals5j4']
+[2025-03-10T01:41:07.972+0000] {standard_task_runner.py:105} INFO - Job 561: Subtask load_to_gold_layer
+[2025-03-10T01:41:08.035+0000] {task_command.py:467} INFO - Running <TaskInstance: pull_data_from_chess_api.load_to_gold_layer scheduled__2025-01-01T00:00:00+00:00 [running]> on host 70b3b9cfbba0
+[2025-03-10T01:41:08.148+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pull_data_from_chess_api' AIRFLOW_CTX_TASK_ID='load_to_gold_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-01-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-01T00:00:00+00:00'
+[2025-03-10T01:41:08.149+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-10T01:41:08.172+0000] {logging_mixin.py:190} INFO - Execution Date: 2025-01-01
+[2025-03-10T01:41:08.175+0000] {connection.py:531} ERROR - Unable to retrieve connection from secrets backend (EnvironmentVariablesBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 526, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 116, in get_connection
+    return self.deserialize_connection(conn_id=conn_id, value=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/base_secrets.py", line 70, in deserialize_connection
+    return Connection(conn_id=conn_id, uri=value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 481, in _initialize_instance
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/state.py", line 479, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 169, in __init__
+    self._parse_from_uri(uri)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 257, in _parse_from_uri
+    self.port = uri_parts.port
+                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/urllib/parse.py", line 182, in port
+    raise ValueError(f"Port could not be cast to integer value as {port!r}")
+ValueError: Port could not be cast to integer value as 'DefaultEndpointsProtocol=https;AccountName=rbchesssa;AccountKey=lG9W+utkpTNorE0rTLlfDMUZsTPleXk6pXv6NnfDTi'
+[2025-03-10T01:41:08.188+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_storage'
+[2025-03-10T01:41:09.323+0000] {logging_mixin.py:190} INFO - Previewing Dataframe
+[2025-03-10T01:41:09.326+0000] {logging_mixin.py:190} INFO - game_url                        object
+time_control                    object
+rated                             bool
+time_class                      object
+rules                           object
+white_rating                     int64
+white_result                    object
+black_rating                     int64
+black_result                    object
+pgn_event                       object
+pgn_site                        object
+game_date               datetime64[us]
+pgn_white_user                  object
+pgn_black_user                  object
+pgn_result                      object
+pgn_current_position            object
+pgn_timezone                    object
+pgn_eco                         object
+pgn_eco_url                     object
+start_time              datetime64[ns]
+end_time                datetime64[ns]
+end_game_date           datetime64[us]
+pgn_raw                         object
+pgn_trans                       object
+last_updated                    object
+dtype: object
+[2025-03-10T01:41:09.343+0000] {logging_mixin.py:190} INFO - https://www.chess.com/game/live/129473644755	180+2	True	blitz	chess	1333	timeout	1348	win	Live Chess	Chess.com	2025-01-01 00:00:00	i-k-i	Rhythmbear1	0-1	5R2/8/2p5/8/6p1/6k1/2r4p/5K2 w - -	UTC	C01	https://www.chess.com/openings/French-Defense-Exchange-Variation-3...exd5-4.Nc3	2025-01-01 12:35:19	2025-01-01 12:45:27	2025-01-01 00:00:00	e4 e6 d4 d5 exd5 exd5 Nc3 c6 Nf3 Bd6 Bd3 Ne7 Bg5 f6 Bh4 Bf5 Bg3 Bxd3 Qxd3 O-O O-O-O Nd7 h4 Qc7 Bxd6 Qxd6 g4 Rae8 h5 b5 Kb1 b4 Na4 Qf4 Rdg1 Nc8 h6 g6 Nc5 Nxc5 dxc5 a5 b3 Na7 g5 fxg5 Nxg5 Nb5 Nh3 Qf5 Qxf5 Rxf5 f4 Re2 Re1 Nc3+ Kb2 Kf7 Rxe2 Nxe2 Re1 Nxf4 Nxf4 Rxf4 a3 g5 axb4 axb4 Ra1 Kg6 Ra6 Rf6 Rb6 Kxh6 Rxb4 Kg6 Rg4 h5 Rg1 g4 c4 dxc4 bxc4 Rf2+ Kc3 Kf5 Kd4 Rf4+ Ke3 Rxc4 Rf1+ Kg5 Rf8 Rxc5 Rg8+ Kh4 Kf2 Rc3 Re8 Kg5 Rg8+ Kh4 Re8 Rc2+ Kg1 Kg3 Re1 h4 Re3+ Kf4 Re8 h3 Rf8+ Kg3 Kf1 h2	1. e4 e6 2. d4 d5 3. exd5 exd5 4. Nc3 c6 5. Nf3 Bd6 6. Bd3 Ne7 7. Bg5 f6 8. Bh4 Bf5 9. Bg3 Bxd3 10. Qxd3 O-O 11. O-O-O Nd7 12. h4 Qc7 13. Bxd6 Qxd6 14. g4 Rae8 15. h5 b5 16. Kb1 b4 17. Na4 Qf4 18. Rdg1 Nc8 19. h6 g6 20. Nc5 Nxc5 21. dxc5 a5 22. b3 Na7 23. g5 fxg5 24. Nxg5 Nb5 25. Nh3 Qf5 26. Qxf5 Rxf5 27. f4 Re2 28. Re1 Nc3+ 29. Kb2 Kf7 30. Rxe2 Nxe2 31. Re1 Nxf4 32. Nxf4 Rxf4 33. a3 g5 34. axb4 axb4 35. Ra1 Kg6 36. Ra6 Rf6 37. Rb6 Kxh6 38. Rxb4 Kg6 39. Rg4 h5 40. Rg1 g4 41. c4 dxc4 42. bxc4 Rf2+ 43. Kc3 Kf5 44. Kd4 Rf4+ 45. Ke3 Rxc4 46. Rf1+ Kg5 47. Rf8 Rxc5 48. Rg8+ Kh4 49. Kf2 Rc3 50. Re8 Kg5 51. Rg8+ Kh4 52. Re8 Rc2+ 53. Kg1 Kg3 54. Re1 h4 55. Re3+ Kf4 56. Re8 h3 57. Rf8+ Kg3 58. Kf1 h2	2025-01-01
+https://www.chess.com/game/live/129474743497	180+2	True	blitz	chess	1368	win	1340	timeout	Live Chess	Chess.com	2025-01-01 00:00:00	AdamLoblaw	Rhythmbear1	1-0	5bk1/5pp1/4p2p/4P3/1P6/3Q3P/5KP1/2R5 b - -	UTC	C00	https://www.chess.com/openings/French-Defense	2025-01-01 12:45:56	2025-01-01 12:53:57	2025-01-01 00:00:00	e4 e6 c3 d5 Qc2 c5 Nf3 Nf6 e5 Nfd7 Bb5 Be7 d4 cxd4 cxd4 O-O O-O Nb6 Bf4 Bd7 a4 Nc6 Nbd2 Rc8 Qb3 Na5 Qa2 Bxb5 axb5 Nac4 Qxa7 Qc7 Qa2 Ra8 Qb1 Rab8 b4 Qd7 Nxc4 Nxc4 b6 Qb5 Qd3 Qxb6 Rfb1 Ra8 Rxa8 Rxa8 Nd2 Ra3 Nxc4 Qb5 Qxa3 Qxc4 Qa8+ Bf8 Qxb7 Qxd4 Be3 Qd3 Rc1 h6 h3 d4 Qd7 dxe3 Qxd3 exf2+ Kxf2	1. e4 e6 2. c3 d5 3. Qc2 c5 4. Nf3 Nf6 5. e5 Nfd7 6. Bb5 Be7 7. d4 cxd4 8. cxd4 O-O 9. O-O Nb6 10. Bf4 Bd7 11. a4 Nc6 12. Nbd2 Rc8 13. Qb3 Na5 14. Qa2 Bxb5 15. axb5 Nac4 16. Qxa7 Qc7 17. Qa2 Ra8 18. Qb1 Rab8 19. b4 Qd7 20. Nxc4 Nxc4 21. b6 Qb5 22. Qd3 Qxb6 23. Rfb1 Ra8 24. Rxa8 Rxa8 25. Nd2 Ra3 26. Nxc4 Qb5 27. Qxa3 Qxc4 28. Qa8+ Bf8 29. Qxb7 Qxd4 30. Be3 Qd3 31. Rc1 h6 32. h3 d4 33. Qd7 dxe3 34. Qxd3 exf2+ 35. Kxf2 	2025-01-01
+https://www.chess.com/game/live/129479562359	180+2	True	blitz	chess	1432	win	1334	checkmated	Live Chess	Chess.com	2025-01-01 00:00:00	thrNew	Rhythmbear1	1-0	4R2k/1bp2npp/1p1p4/5q1N/3P4/6PP/PP5K/2R5 b - -	UTC	C20	https://www.chess.com/openings/Kings-Pawn-Opening-The-Whale-Variation	2025-01-01 14:07:29	2025-01-01 14:14:47	2025-01-01 00:00:00	c4 e5 e4 d6 Ne2 f5 Nbc3 Nf6 d3 Be7 h3 O-O g3 Nc6 Bg2 b6 exf5 Bb7 f4 exf4 Nxf4 Qd7 Ne6 Rfe8 O-O Rab8 Bd5 Kh8 Kh2 Nxd5 cxd5 Ne5 d4 Nf7 Be3 Bf6 Qd2 Qe7 Nb5 Rec8 Nxa7 Bxd5 Nxc8 Rxc8 Nf4 Bb7 Rac1 Bg5 Rfe1 Qf6 Nh5 Bxe3 Qxe3 Qxf5 Qe8+ Rxe8 Rxe8#	1. c4 e5 2. e4 d6 3. Ne2 f5 4. Nbc3 Nf6 5. d3 Be7 6. h3 O-O 7. g3 Nc6 8. Bg2 b6 9. exf5 Bb7 10. f4 exf4 11. Nxf4 Qd7 12. Ne6 Rfe8 13. O-O Rab8 14. Bd5 Kh8 15. Kh2 Nxd5 16. cxd5 Ne5 17. d4 Nf7 18. Be3 Bf6 19. Qd2 Qe7 20. Nb5 Rec8 21. Nxa7 Bxd5 22. Nxc8 Rxc8 23. Nf4 Bb7 24. Rac1 Bg5 25. Rfe1 Qf6 26. Nh5 Bxe3 27. Qxe3 Qxf5 28. Qe8+ Rxe8 29. Rxe8# 	2025-01-01
+https://www.chess.com/game/live/129479652553	180+2	True	blitz	chess	1342	win	1337	timeout	Live Chess	Chess.com	2025-01-01 00:00:00	Rhythmbear1	Onizukaaaaaaaaaaa	1-0	1r2k3/4pn2/b3Q2p/p1Np2p1/P7/1P3P1P/1r4PK/1B2R3 b - -	UTC	B00	https://www.chess.com/openings/Kings-Pawn-Opening-Borg-Defense-Borg-Gambit	2025-01-01 14:14:54	2025-01-01 14:23:23	2025-01-01 00:00:00	e4 g5 d4 Bg7 Nf3 h6 h3 c5 c3 cxd4 Nxd4 Nc6 Nxc6 bxc6 Bc4 Qb6 Bb3 a5 O-O Ba6 Be3 Qb7 Re1 Nf6 a4 Nxe4 Qc2 d5 Ba2 Rb8 b3 O-O Bd4 Bxd4 cxd4 Qb4 f3 Qxe1+ Kh2 Qg3+ Kg1 Nd6 Nd2 Rfc8 Bb1 Qe1+ Kh2 f5 Ba2 Kf8 Rxe1 c5 dxc5 Nf7 Qxf5 Rxc5 Ne4 Rc2 Bb1 Rb2 Nc5 Ke8 Qe6	1. e4 g5 2. d4 Bg7 3. Nf3 h6 4. h3 c5 5. c3 cxd4 6. Nxd4 Nc6 7. Nxc6 bxc6 8. Bc4 Qb6 9. Bb3 a5 10. O-O Ba6 11. Be3 Qb7 12. Re1 Nf6 13. a4 Nxe4 14. Qc2 d5 15. Ba2 Rb8 16. b3 O-O 17. Bd4 Bxd4 18. cxd4 Qb4 19. f3 Qxe1+ 20. Kh2 Qg3+ 21. Kg1 Nd6 22. Nd2 Rfc8 23. Bb1 Qe1+ 24. Kh2 f5 25. Ba2 Kf8 26. Rxe1 c5 27. dxc5 Nf7 28. Qxf5 Rxc5 29. Ne4 Rc2 30. Bb1 Rb2 31. Nc5 Ke8 32. Qe6 	2025-01-01
+https://www.chess.com/game/live/129480236557	180+2	True	blitz	chess	1334	timeout	1363	win	Live Chess	Chess.com	2025-01-01 00:00:00	Rhythmbear1	serhatdog34	0-1	r2q1rk1/ppp1p1bp/2n3p1/3pP3/2nP2b1/1NP2N2/PP2B1PP/R1BQ1RK1 w - -	UTC	B06	https://www.chess.com/openings/Modern-Defense-with-1-e4-2.d4-Bg7-3.c3-d5	2025-01-01 14:23:29	2025-01-01 14:28:58	2025-01-01 00:00:00	e4 g6 d4 Bg7 c3 d5 Bd3 Nf6 Nd2 O-O e5 Nfd7 f4 f6 Ngf3 fxe5 fxe5 Nb6 O-O Nc6 Nb3 Bg4 Be2 Nc4	1. e4 g6 2. d4 Bg7 3. c3 d5 4. Bd3 Nf6 5. Nd2 O-O 6. e5 Nfd7 7. f4 f6 8. Ngf3 fxe5 9. fxe5 Nb6 10. O-O Nc6 11. Nb3 Bg4 12. Be2 Nc4	2025-01-01
+[2025-03-10T01:41:11.708+0000] {logging_mixin.py:190} INFO - Previewing Dataframe
+[2025-03-10T01:41:11.709+0000] {logging_mixin.py:190} INFO - game_url                        object
+time_control                    object
+rated                             bool
+time_class                      object
+rules                           object
+white_rating                     int64
+white_result                    object
+black_rating                     int64
+black_result                    object
+pgn_event                       object
+pgn_site                        object
+game_date               datetime64[us]
+pgn_white_user                  object
+pgn_black_user                  object
+pgn_result                      object
+pgn_current_position            object
+pgn_timezone                    object
+pgn_eco                         object
+pgn_eco_url                     object
+start_time              datetime64[ns]
+end_time                datetime64[ns]
+end_game_date           datetime64[us]
+pgn_raw                         object
+pgn_trans                       object
+last_updated            datetime64[us]
+dtype: object
+[2025-03-10T01:41:11.755+0000] {logging_mixin.py:190} INFO - https://www.chess.com/game/live/100291493075	120+1	True	bullet	chess	590	timeout	693	win	Live Chess	Chess.com	2024-01-29 00:00:00	Rhythmbear1	arditojosh	0-1	8/1Q3pkp/4p1p1/4q3/3p4/6PP/5P2/6K1 w - -	UTC	B10	https://www.chess.com/openings/Caro-Kann-Defense-2.Nf3-d5-3.exd5-cxd5	2024-01-29 18:23:33	2024-01-29 18:28:43	2024-01-29 00:00:00	e4 c6 Nf3 d5 exd5 cxd5 Nc3 Nf6 d4 Nc6 h3 Bf5 Bd3 e6 O-O Bxd3 Qxd3 Bd6 Re1 O-O Bg5 Be7 Ne5 Nxe5 dxe5 Nd7 Bxe7 Qxe7 Qg3 Rac8 Rac1 a6 Ne2 b5 Nf4 Rc4 b3 Rc5 Nh5 g6 Nf6+ Nxf6 exf6 Qxf6 Qd6 Rfc8 Qxa6 Rxc2 Rxc2 Rxc2 Qxb5 Rxa2 Qb8+ Kg7 b4 Ra4 b5 Rb4 b6 Qb2 Qd6 Rxb6 Qe7 Qd2 Rf1 Qc2 g3 Rb1 Rxb1 Qxb1+ Kg2 Qe4+ Kg1 Qe1+ Kg2 Qe4+ Kg1 Qe5 Qb7 d4	1. e4 c6 2. Nf3 d5 3. exd5 cxd5 4. Nc3 Nf6 5. d4 Nc6 6. h3 Bf5 7. Bd3 e6 8. O-O Bxd3 9. Qxd3 Bd6 10. Re1 O-O 11. Bg5 Be7 12. Ne5 Nxe5 13. dxe5 Nd7 14. Bxe7 Qxe7 15. Qg3 Rac8 16. Rac1 a6 17. Ne2 b5 18. Nf4 Rc4 19. b3 Rc5 20. Nh5 g6 21. Nf6+ Nxf6 22. exf6 Qxf6 23. Qd6 Rfc8 24. Qxa6 Rxc2 25. Rxc2 Rxc2 26. Qxb5 Rxa2 27. Qb8+ Kg7 28. b4 Ra4 29. b5 Rb4 30. b6 Qb2 31. Qd6 Rxb6 32. Qe7 Qd2 33. Rf1 Qc2 34. g3 Rb1 35. Rxb1 Qxb1+ 36. Kg2 Qe4+ 37. Kg1 Qe1+ 38. Kg2 Qe4+ 39. Kg1 Qe5 40. Qb7 d4	2024-01-01 00:00:00
+https://www.chess.com/game/live/100360978249	600	True	rapid	chess	1333	win	1327	resigned	Live Chess	Chess.com	2024-01-30 00:00:00	negor58	Rhythmbear1	1-0	8/p2kPK2/8/1P1p4/8/2P5/5P2/8 b - -	UTC	C02	https://www.chess.com/openings/French-Defense-Advance-Variation-3...c5	2024-01-30 13:39:56	2024-01-30 13:54:52	2024-01-30 00:00:00	e4 e6 d4 d5 e5 c5 Bb5+ Bd7 Qd3 c4 Bxd7+ Qxd7 Qe3 Nc6 c3 Nh6 Qf3 Nf5 Ne2 Be7 h4 Bxh4 Qg4 Be7 Ng3 O-O-O Nxf5 exf5 Qxg7 Rhg8 Qxf7 Rxg2 Be3 Rdg8 Ke2 R2g7 Qh5 Bg5 Bxg5 Rxg5 Qxh7 Qxh7 Rxh7 Rg2 Nd2 f4 Kf3 R2g7 Rah1 Rxh7 Rxh7 Rf8 Rh4 Ne7 Rxf4 Rxf4+ Kxf4 Ng6+ Kf5 Nh4+ Kg4 Ng6 b3 cxb3 Nxb3 Kd7 Nc5+ Kc6 a4 Nxe5+ dxe5 Kxc5 Kf5 Kc6 e6 Kd6 Kf6 b5 axb5 Kc7 e7 Kd7 Kf7	1. e4 e6 2. d4 d5 3. e5 c5 4. Bb5+ Bd7 5. Qd3 c4 6. Bxd7+ Qxd7 7. Qe3 Nc6 8. c3 Nh6 9. Qf3 Nf5 10. Ne2 Be7 11. h4 Bxh4 12. Qg4 Be7 13. Ng3 O-O-O 14. Nxf5 exf5 15. Qxg7 Rhg8 16. Qxf7 Rxg2 17. Be3 Rdg8 18. Ke2 R2g7 19. Qh5 Bg5 20. Bxg5 Rxg5 21. Qxh7 Qxh7 22. Rxh7 Rg2 23. Nd2 f4 24. Kf3 R2g7 25. Rah1 Rxh7 26. Rxh7 Rf8 27. Rh4 Ne7 28. Rxf4 Rxf4+ 29. Kxf4 Ng6+ 30. Kf5 Nh4+ 31. Kg4 Ng6 32. b3 cxb3 33. Nxb3 Kd7 34. Nc5+ Kc6 35. a4 Nxe5+ 36. dxe5 Kxc5 37. Kf5 Kc6 38. e6 Kd6 39. Kf6 b5 40. axb5 Kc7 41. e7 Kd7 42. Kf7 	2024-01-01 00:00:00
+https://www.chess.com/game/live/100603317629	600	True	rapid	chess	1347	abandoned	1366	win	Live Chess	Chess.com	2024-02-02 00:00:00	Rhythmbear1	Cobby06	0-1	8/p3k3/5p1p/5K2/4N3/7P/1r6/1b6 w - -	UTC	C45	https://www.chess.com/openings/Scotch-Game-Scotch-Gambit	2024-02-02 08:56:11	2024-02-02 09:09:51	2024-02-02 00:00:00	e4 e5 Nf3 Nc6 d4 exd4 Bc4 h6 O-O Bc5 c3 dxc3 Bxf7+ Kxf7 Qd5+ Kf8 Qh5 d6 Nxc3 Nf6 Qg6 Ng4 e5 dxe5 Nxe5 Ncxe5 Qe4 Nxf2 Qf4+ Qf6 Qxf6+ gxf6 Rxf2 Bxf2+ Kxf2 Nd3+ Ke2 Nxc1+ Rxc1 Bg4+ Ke3 Re8+ Kf4 Rg8 h3 Be6 Ne4 Kf7 Rxc7+ Re7 Nd6+ Kf8 Rxe7 Kxe7 Nxb7 Bxa2 Nc5 Rxg2 Ne4 Rxb2 Kf5 Bb1	1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Bc4 h6 5. O-O Bc5 6. c3 dxc3 7. Bxf7+ Kxf7 8. Qd5+ Kf8 9. Qh5 d6 10. Nxc3 Nf6 11. Qg6 Ng4 12. e5 dxe5 13. Nxe5 Ncxe5 14. Qe4 Nxf2 15. Qf4+ Qf6 16. Qxf6+ gxf6 17. Rxf2 Bxf2+ 18. Kxf2 Nd3+ 19. Ke2 Nxc1+ 20. Rxc1 Bg4+ 21. Ke3 Re8+ 22. Kf4 Rg8 23. h3 Be6 24. Ne4 Kf7 25. Rxc7+ Re7 26. Nd6+ Kf8 27. Rxe7 Kxe7 28. Nxb7 Bxa2 29. Nc5 Rxg2 30. Ne4 Rxb2 31. Kf5 Bb1	2024-02-01 00:00:00
+https://www.chess.com/game/live/100607663691	600	True	rapid	chess	1337	timeout	1305	win	Live Chess	Chess.com	2024-02-02 00:00:00	Rhythmbear1	Peter_pan111	0-1	8/p6R/1p1kpr2/1P1p4/2r5/8/5P1P/7K w - -	UTC	E91	https://www.chess.com/openings/Kings-Indian-Defense-Orthodox-Variation	2024-02-02 10:14:55	2024-02-02 10:34:48	2024-02-02 00:00:00	e4 g6 Nf3 Bg7 d4 d6 c4 Nf6 Nc3 O-O Be2 b6 O-O Bb7 d5 Nbd7 Qb3 c6 Bf4 cxd5 cxd5 Nc5 Qc2 Rc8 Be3 Ncxe4 Bb5 Nxc3 bxc3 Nxd5 Bd4 Bxd4 Nxd4 Nxc3 Qb2 Nxb5 Nxb5 Ba6 a4 Bxb5 axb5 Rc7 Rae1 e6 Re3 d5 Rh3 h5 Qe5 Kh7 g4 h4 Kh1 Qe7 g5 f6 Rxh4+ Kg7 gxf6+ Rxf6 Rg1 Rc4 Rxg6+ Kxg6 Qh5+ Kg7 Qh8+ Kg6 Rh6+ Kf5 Rh5+ Ke4 Rh4+ Ke5 Rh5+ Kd6 Qb8+ Qc7 Qxc7+ Kxc7 Rh7+ Kd6	1. e4 g6 2. Nf3 Bg7 3. d4 d6 4. c4 Nf6 5. Nc3 O-O 6. Be2 b6 7. O-O Bb7 8. d5 Nbd7 9. Qb3 c6 10. Bf4 cxd5 11. cxd5 Nc5 12. Qc2 Rc8 13. Be3 Ncxe4 14. Bb5 Nxc3 15. bxc3 Nxd5 16. Bd4 Bxd4 17. Nxd4 Nxc3 18. Qb2 Nxb5 19. Nxb5 Ba6 20. a4 Bxb5 21. axb5 Rc7 22. Rae1 e6 23. Re3 d5 24. Rh3 h5 25. Qe5 Kh7 26. g4 h4 27. Kh1 Qe7 28. g5 f6 29. Rxh4+ Kg7 30. gxf6+ Rxf6 31. Rg1 Rc4 32. Rxg6+ Kxg6 33. Qh5+ Kg7 34. Qh8+ Kg6 35. Rh6+ Kf5 36. Rh5+ Ke4 37. Rh4+ Ke5 38. Rh5+ Kd6 39. Qb8+ Qc7 40. Qxc7+ Kxc7 41. Rh7+ Kd6	2024-02-01 00:00:00
+https://www.chess.com/game/live/100610514591	600	True	rapid	chess	1382	win	1329	timeout	Live Chess	Chess.com	2024-02-02 00:00:00	Kc4real002	Rhythmbear1	1-0	8/5pkp/P3p1p1/3p4/3b4/5QPP/8/7K b - -	UTC	C02	https://www.chess.com/openings/French-Defense-Advance-Paulsen-Main-Line-6...Bd7-7.b4-cxd4	2024-02-02 10:55:46	2024-02-02 11:11:47	2024-02-02 00:00:00	e4 e6 d4 d5 e5 c5 Nf3 Bd7 a3 Nc6 c3 Qb6 b4 cxd4 Nxd4 Nxe5 Bf4 Bd6 a4 Nf6 a5 Qd8 Be2 O-O O-O Rc8 Bg3 Ne4 Bxe5 Bxe5 Qd3 a6 f3 Bb5 Nxb5 axb5 Qxb5 Nxc3 Nxc3 Bxc3 Rac1 Bd4+ Kh1 Qe7 Qd3 Qf6 b5 Rc3 Qd1 Rfc8 Rxc3 Rxc3 a6 bxa6 bxa6 Ra3 Qc2 Qe7 Qc8+ Qf8 Qc6 Ba7 Qb7 Qb8 h3 Rb3 Qd7 g6 Rc1 Rb1 Rxb1 Qxb1+ Kh2 Bb8+ g3 Qb2 Qc8+ Kg7 Kg1 Qxe2 Qc3+ Be5 Qa3 Bd4+ Kh1 Qxf3+ Qxf3	1. e4 e6 2. d4 d5 3. e5 c5 4. Nf3 Bd7 5. a3 Nc6 6. c3 Qb6 7. b4 cxd4 8. Nxd4 Nxe5 9. Bf4 Bd6 10. a4 Nf6 11. a5 Qd8 12. Be2 O-O 13. O-O Rc8 14. Bg3 Ne4 15. Bxe5 Bxe5 16. Qd3 a6 17. f3 Bb5 18. Nxb5 axb5 19. Qxb5 Nxc3 20. Nxc3 Bxc3 21. Rac1 Bd4+ 22. Kh1 Qe7 23. Qd3 Qf6 24. b5 Rc3 25. Qd1 Rfc8 26. Rxc3 Rxc3 27. a6 bxa6 28. bxa6 Ra3 29. Qc2 Qe7 30. Qc8+ Qf8 31. Qc6 Ba7 32. Qb7 Qb8 33. h3 Rb3 34. Qd7 g6 35. Rc1 Rb1 36. Rxb1 Qxb1+ 37. Kh2 Bb8+ 38. g3 Qb2 39. Qc8+ Kg7 40. Kg1 Qxe2 41. Qc3+ Be5 42. Qa3 Bd4+ 43. Kh1 Qxf3+ 44. Qxf3 	2024-02-01 00:00:00
+[2025-03-10T01:41:13.585+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-10T01:41:13.597+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-10T01:41:13.598+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=pull_data_from_chess_api, task_id=load_to_gold_layer, run_id=scheduled__2025-01-01T00:00:00+00:00, execution_date=20250101T000000, start_date=20250310T014107, end_date=20250310T014113
+[2025-03-10T01:41:13.645+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-10T01:41:13.668+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-10T01:41:13.672+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,25 @@
+[2025-03-31T18:09:39.366+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-31T18:09:39.479+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_data_warehouse.load_fact_table_to_postgres dataset_triggered__2025-03-31T18:08:03.179613+00:00 [queued]>
+[2025-03-31T18:09:39.528+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_data_warehouse.load_fact_table_to_postgres dataset_triggered__2025-03-31T18:08:03.179613+00:00 [queued]>
+[2025-03-31T18:09:39.530+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-03-31T18:09:39.631+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): load_fact_table_to_postgres> on 2025-03-31 18:08:03.179613+00:00
+[2025-03-31T18:09:39.674+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=14384) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-03-31T18:09:39.690+0000] {standard_task_runner.py:72} INFO - Started process 14393 to run task
+[2025-03-31T18:09:39.691+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_data_warehouse', 'load_fact_table_to_postgres', 'dataset_triggered__2025-03-31T18:08:03.179613+00:00', '--job-id', '1054', '--raw', '--subdir', 'DAGS_FOLDER/load_data_warehouse_dag.py', '--cfg-path', '/tmp/tmpqev_bthz']
+[2025-03-31T18:09:39.707+0000] {standard_task_runner.py:105} INFO - Job 1054: Subtask load_fact_table_to_postgres
+[2025-03-31T18:09:39.974+0000] {task_command.py:467} INFO - Running <TaskInstance: load_data_warehouse.load_fact_table_to_postgres dataset_triggered__2025-03-31T18:08:03.179613+00:00 [running]> on host 3b3ac09dc50a
+[2025-03-31T18:09:40.618+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_data_warehouse' AIRFLOW_CTX_TASK_ID='load_fact_table_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2025-03-31T18:08:03.179613+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2025-03-31T18:08:03.179613+00:00'
+[2025-03-31T18:09:40.625+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-03-31T18:09:40.726+0000] {logging_mixin.py:190} INFO - Fetching data for Last Updated Date: 2025-03-10 01:32:14.394982
+[2025-03-31T18:09:46.612+0000] {logging_mixin.py:190} INFO - ✅ DataFrame Loaded: 3663 rows, 15 columns
+[2025-03-31T18:09:46.715+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:09:46.813+0000] {base.py:84} INFO - Retrieving connection 'azure_chess_dw'
+[2025-03-31T18:10:20.350+0000] {logging_mixin.py:190} INFO - Successfully Loaded Data to Postgres
+[2025-03-31T18:10:20.359+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-31T18:10:20.387+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-03-31T18:10:20.388+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=load_data_warehouse, task_id=load_fact_table_to_postgres, run_id=dataset_triggered__2025-03-31T18:08:03.179613+00:00, execution_date=20250331T180803, start_date=20250331T180939, end_date=20250331T181020
+[2025-03-31T18:10:20.462+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-31T18:10:20.509+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-31T18:10:20.513+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
