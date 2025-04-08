@@ -544,7 +544,7 @@ def load_fact_table(**kwargs):
     con = initialize_azure_extension()
     con.create_function('format_time_control', format_time_control)
 
-    # Defin Source and destinations
+    # Define Source and destinations
     fact_file_name = "gold/fact-games.parquet"
     source_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
     destination_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{fact_file_name}"
@@ -567,6 +567,10 @@ def load_fact_table(**kwargs):
                        format_time_control(time_control) as time_control, 
                        CASE WHEN pgn_white_user = 'Rhythmbear1' THEN 'white'
                             ELSE 'black' END as my_color,
+                       CASE WHEN pgn_white_user = 'Rhythmbear1' THEN pgn_white_user
+                            ELSE pgn_black_user END as my_username,
+                       CASE WHEN pgn_white_user = 'Rhythmbear1' THEN pgn_black_user
+                            ELSE pgn_white_user END as opponent_username,
                        CASE 
                             WHEN pgn_white_user = 'Rhythmbear1' THEN white_rating
                             ELSE black_rating END as my_rating,

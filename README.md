@@ -19,6 +19,12 @@ This project aims to build an ETL pipeline to analyze my personal chess games an
 ## 2.0 Architecture & Workflow
 ![Pipeline Architecture](Project_Files/Chess_ETL_architecture_.gif)
 
+### Data Flow
+- Airflow pulls data from Chess.com API and stages it in the bronze layer of the data lake
+- Duckdb Transforms and cleans data in bronze layer and then stores it in Silver layer
+- Finally Duckdb Performs final aggregations and stores data in the dimensinoal model format in the gold layer. 
+- Airflow loads data from the Gold layer into Data Warehouse.
+- PowerBI is used to build dashboards and reports   
 ### 🛠 Tools & Technologies
 
 | Category | Tools & Technologies Used |
