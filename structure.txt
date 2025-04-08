@@ -29,14 +29,12 @@
 │   ├── dag_processor_manager
 │   ├── dbt.log
 │   └── scheduler
-├── main.py
 ├── openings.csv
 ├── plugins
 ├── requirements.txt
 ├── structure.txt
 ├── tests
 │   └── dags
-├── utils.py
 └── venv
     ├── bin
     ├── etc
@@ -46,4 +44,4 @@
     ├── pyvenv.cfg
     └── share
 
-28 directories, 18 files
+28 directories, 16 files

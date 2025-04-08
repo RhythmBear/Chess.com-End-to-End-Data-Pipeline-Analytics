@@ -108,20 +108,18 @@ This First Dag
 │   └── sql # SQL queries used in DAG folder
 ├── docker-compose.yaml
 ├── include
-├── logs
+── logs
 │   ├── dag_id=load_data_warehouse
 │   ├── dag_id=pull_data_from_chess_api
 │   ├── dag_processor_manager
 │   ├── dbt.log
 │   └── scheduler
-├── main.py
 ├── openings.csv
 ├── plugins
 ├── requirements.txt
 ├── structure.txt
 ├── tests
 │   └── dags
-├── utils.py
 └── venv
     ├── bin
     ├── etc
@@ -131,4 +129,4 @@ This First Dag
     ├── pyvenv.cfg
     └── share
 
-28 directories, 18 files
+28 directories, 16 files
