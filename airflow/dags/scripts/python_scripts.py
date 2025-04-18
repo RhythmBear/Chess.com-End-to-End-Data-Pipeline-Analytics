@@ -1,4 +1,5 @@
 import json
+import logging
 from tempfile import NamedTemporaryFile
 
 import duckdb
@@ -12,6 +13,11 @@ from scripts import udfs
 
 # Load environment variables from .env file
 load_dotenv()
+
+# Set up logging
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+logging.getLogger().setLevel(20)
+
 
 # Define Variables
 storage_account_name = "rbchesssa"
@@ -36,12 +42,10 @@ def extract_and_load_chess_data(username: str, year: int, month: int) -> list:
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
     }
 
-    print(
-        f"Attempting to fetch data for Year: {year} and Month: {month}, formatted as {int(month):02}"
-    )
+    logging.info(f"Attempting to fetch data for Year: {year} and Month: {month}, formatted as {int(month):02}")
 
     url = f"https://api.chess.com/pub/player/{username}/games/{year}/{int(month):02}"
-    print(f"Attemping to Fetch Data from: {url}")
+    logging.info(f"Attemping to Fetch Data from: {url}")
     response = requests.get(url, headers=headers)
 
     pulled_data = []
@@ -49,16 +53,16 @@ def extract_and_load_chess_data(username: str, year: int, month: int) -> list:
     if response.status_code == 200:
         data = response.json()
         pulled_data = data.get("games", [])
-        print(
+        logging.info(
             f"Successfully Fetched Data From CHess.com API, Records Pulled: {len(pulled_data)}"
         )
     else:
-        print(f"Failed to fetch data: {response.status_code}")
+        logging.info(f"Failed to fetch data: {response.status_code}")
         pulled_data = []
 
     # Upload the data to Azure Storage
     with NamedTemporaryFile("w") as temp:
-        print("Attempting to Upload Data to Azure Storage")
+        logging.info("Attempting to Upload Data to Azure Storage")
         json.dump(pulled_data, temp)
         temp.flush()
         az_hook = WasbHook(wasb_conn_id="azure_chess_storage")
@@ -71,24 +75,32 @@ def extract_and_load_chess_data(username: str, year: int, month: int) -> list:
             overwrite=True,
         )
 
-        print(f"Successfully Uploaded Data to Azure Storage as {blobname}")
+        logging.info(f"Successfully Uploaded Data to Azure Storage as {blobname}")
         return True
 
 
 def preview_dataframe(data_frame) -> str:
 
-    print("Previewing Dataframe")
-    print(data_frame.dtypes)
+    logging.info("Previewing Dataframe")
+    logging.info(data_frame.dtypes)
     con = duckdb.connect(":memory:")
     # Preview the first n rows of a dataframe
     table = con.execute(f"SELECT * FROM data_frame LIMIT 5").fetchall()
     formatted_output = "\n".join(
         ["\t".join(map(str, row)) for row in table]
     )  # Convert to string
-    print(formatted_output)
+    logging.info(formatted_output)
 
 def initialize_azure_extension():
-    # Fetch the azure connection string that allows to connect duckdb directly to azure storage to read files.
+    """Initialize a DuckDB connection with Azure extension.
+    This function sets up a DuckDB in-memory database connection, installs and loads 
+    the Azure extension, configures a secret for the Azure connection string, and 
+    applies necessary transport options. Additionally, it initializes user-defined 
+    functions (UDFs) for further use.
+
+    Returns:
+        duckdb.DuckDBPyConnection: Configured DuckDB connection with Azure extension.
+    """
     conn_string = Variable.get("AZURE_STORAGE_CONN_STRING_SECRET")
 
     conn = duckdb.connect(":memory:")
@@ -117,7 +129,14 @@ def upload_duckdb_to_azure(
     container_name: str, 
     blob_name: str
 ) -> None:
-    print(f"File To be loaded has {duckdb_result.shape}")
+    """
+    Uploads a DuckDB result to Azure Blob Storage as a Parquet file.
+    Args:
+        duckdb_result (duckdb.DuckDBPyRelation): The DuckDB result to upload.
+        container_name (str): The name of the Azure Blob Storage container.
+        blob_name (str): The name of the blob in Azure Blob Storage.
+    """ 
+    logging.info(f"File To be loaded has {duckdb_result.shape}")
     with NamedTemporaryFile("w", suffix=".parquet") as temp_file:
         df = duckdb_result.fetchdf()
 
@@ -128,15 +147,25 @@ def upload_duckdb_to_azure(
             blob_name=blob_name,
             overwrite=True,
         )
-    print(f"Successfully Loaded to Azure Storage as {blob_name}")
+    logging.info(f"Successfully Loaded to Azure Storage as {blob_name}")
 
 
 def transform_json_to_fact_table(year: int, month: int, **kwargs) -> None:
+    """
+    Transforms JSON file in bronze layer fact table format and uploads it to Silver layer.
+    Args:
+        year (int): The year of the games to process.
+        month (int): The month of the games to process.
+        **kwargs: Additional keyword arguments, including Airflow task instance for XCom operations.
+    Returns:
+        None
+    """
+
     con = initialize_azure_extension()
     source_blob_name = f"bronze/{year}-{int(month):02}-games.json"
     destination_blob_name = f"silver/fact-{year}-{int(month):02}-games.parquet"
 
-    print(f"Attempting to Transform Data from {source_blob_name}")
+    logging.info(f"Attempting to Transform Data from {source_blob_name}")
     fct = con.sql(
         """SELECT url as game_url,
             time_control as time_control,
@@ -183,13 +212,26 @@ def transform_json_to_fact_table(year: int, month: int, **kwargs) -> None:
     ti = kwargs["ti"]
     ti.xcom_push(key="fact_blob_name", value=destination_blob_name)
 
-    print(f"Successfully Transformed Data and Loaded to Azure Storage as {destination_blob_name}")
+    logging.info(f"Successfully Transformed Data and Loaded to Azure Storage as {destination_blob_name}")
 
 
 ########################################### Loading Sripts for Gold Layer ##############################
 
 
 def load_dim_openings(**kwargs):
+    """
+        Loads and updates the dimensional table for chess openings in Gold Layer.
+        Extracts only chess opening details and appends them to an existing dimensional 
+        table or creates a new one if it doesn't exist.
+
+    Args:
+        **kwargs: Arbitrary keyword arguments passed from the Airflow task, 
+                  including the task instance (`ti`) for XComs interaction.
+
+    Returns:
+        None
+    """
+
     # Extract filename from airflow xcoms from previous run
     ti = kwargs["ti"]
     filename = ti.xcom_pull(
@@ -198,17 +240,14 @@ def load_dim_openings(**kwargs):
         key="fact_blob_name",
     )
     # filename  = kwargs['dim_destination']
-    print(f"Received File Name: {filename}")
+    logging.info(f"Received File Name: {filename}")
 
     con = initialize_azure_extension()
 
     dim_file_name = "gold/dim_openings.parquet"
-    source_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
-    )
-    destination_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
-    )
+    source_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
+    destination_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
+
     # Check existence of file in Azure storage
     file_exists = az_hook.check_for_blob(
         container_name=container_name, blob_name=dim_file_name
@@ -251,12 +290,20 @@ def load_dim_openings(**kwargs):
             blob_name=dim_file_name,
             overwrite=True,
         )
-    print(f"Successfully Loaded Dim Openings to Azure Storage as {dim_file_name}")
+    logging.info(f"Successfully Loaded Dim Openings to Azure Storage as {dim_file_name}")
 
     # Install azure extension
 
 
 def load_dim_date(**kwargs):
+    """Loads and transforms the dim_date dimension table from fact table in silver layer.
+    Extracts all the dates and appends them to an existing dimensional date table 
+    or creates a new one if it doesn't exist.
+    Args:
+        **kwargs: Keyword arguments passed from the Airflow task, 
+        including task instance (ti).
+    """    
+    
     # Extract filename from airflow xcoms from previous run
     ti = kwargs["ti"]
     filename = ti.xcom_pull(
@@ -265,20 +312,15 @@ def load_dim_date(**kwargs):
         key="fact_blob_name",
     )
     # filename  = kwargs['dim_destination']
-    print(f"Received File Name: {filename}")
+    logging.info(f"Received File Name: {filename}")
     con = initialize_azure_extension()
     dim_file_name = "gold/dim_date.parquet"
 
-    source_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
-    )
-    destination_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
-    )
+    source_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
+    destination_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
     # Check existence of file in Azure storage
-    file_exists = az_hook.check_for_blob(
-        container_name=container_name, blob_name=dim_file_name
-    )
+    file_exists = az_hook.check_for_blob(container_name=container_name, 
+                                         blob_name=dim_file_name)
 
     if file_exists:
         dim_date = con.sql(
@@ -328,6 +370,17 @@ def load_dim_date(**kwargs):
 
 
 def load_dim_time_control(**kwargs):
+    """Loads and transforms the dim_time_control dimension table from the fact table 
+    in the silver layer, and uploads the result to the gold layer in Azure storage.
+
+    Args:
+        **kwargs: Arbitrary keyword arguments, including:
+            - ti: Task instance object for accessing Airflow XComs.
+
+    Returns:
+        None
+    """
+    
     # Extract filename from airflow xcoms from previous run
     ti = kwargs["ti"]
     filename = ti.xcom_pull(
@@ -335,7 +388,7 @@ def load_dim_time_control(**kwargs):
         dag_id="pull_data_from_chess_api",
         key="fact_blob_name",
     )
-    print(f"Received File Name: {filename}")
+    logging.info(f"Received File Name: {filename}")
     con = initialize_azure_extension()
 
     dim_file_name = "gold/dim_time_control.parquet"
@@ -373,6 +426,13 @@ def load_dim_time_control(**kwargs):
 
 
 def load_dim_results(**kwargs):
+    """Updates or creates the 'dim_results' dimension table in the datalake Gold layer.
+    Args:
+        **kwargs: Arbitrary keyword arguments, including:
+            - ti: Task instance object for accessing Airflow XComs.
+    Returns:
+        None
+    """
     # Extract filename from airflow xcoms from previous run
     ti = kwargs["ti"]
     filename = ti.xcom_pull(
@@ -382,7 +442,7 @@ def load_dim_results(**kwargs):
     )
 
     # filename  = kwargs['dim_destination']
-    print(f"Received File Name: {filename}")
+    logging.info(f"Received File Name: {filename}")
     con = initialize_azure_extension()
     dim_file_name = "gold/dim_results.parquet"
 
@@ -435,6 +495,19 @@ def load_dim_results(**kwargs):
 
 
 def load_fact_table(**kwargs):
+    """Loads and updates the fact table in the gold layer of the data pipeline.
+    This function fetches transformed data from the silver layer, processes it to 
+    generate a fact table, and uploads the updated fact table to Azure Blob Storage. 
+    It ensures deduplication by retaining the most recent records based on the 
+    `last_updated` timestamp.
+    Args:
+        **kwargs: Arbitrary keyword arguments, including:
+            - ti: Task instance for XCom communication.
+            - exec_date: Execution date of the DAG run.
+    Returns:
+        None
+        """
+
     # Fetch the monthly data from the silver layer.
     ti = kwargs["ti"]
     filename = ti.xcom_pull(
@@ -443,10 +516,10 @@ def load_fact_table(**kwargs):
         key="fact_blob_name",
     )
     exec_date = kwargs["exec_date"]
-    print(exec_date)
+    logging.info(exec_date)
     # exec_date = datetime.strptime(kwargs['exec_date'], "%Y-%m-%d").date()
 
-    print(f"Received File Name: {filename}")
+    logging.info(f"Received File Name: {filename}")
     # Initailize azure and duckdb instance
     con = initialize_azure_extension()
 
@@ -504,16 +577,16 @@ def load_fact_table(**kwargs):
                 LEFT JOIN '{dim_results}' AS dim_results_op ON fact.opponent_result = dim_results_op.result_code
                 LEFT JOIN '{dim_time_control}' AS dim_time_control ON fact.time_control = dim_time_control.time_control;
             """)
-    print(f"fact table to be added has: {fact_table.shape}")
+    logging.info(f"fact table to be added has: {fact_table.shape}")
 
     if file_exists:
         prev_fact_table = con.sql(f"""SELECT * FROM '{destination_file_path}' """)
-        print(f"The Previous fact table has : {prev_fact_table.shape}")  # Should not be (0, 0)
+        logging.info(f"The Previous fact table has : {prev_fact_table.shape}")  # Should not be (0, 0)
 
         both_tables = con.sql(f"""SELECT * FROM prev_fact_table
                                     UNION ALL 
                                     SELECT * FROM fact_table;""")
-        print(f"Both Tables have: {both_tables.shape}")
+        logging.info(f"Both Tables have: {both_tables.shape}")
         new_fact_table = con.sql(
             f"""SELECT * 
                 FROM (
@@ -529,7 +602,6 @@ def load_fact_table(**kwargs):
         # pass it into the upload duckdb to azure function.
         new_fact_table.drop(columns=["rn"], inplace=True)
         new_fact_table = con.from_df(new_fact_table)
-        # preview_dataframe(new_fact_table)
 
     else:
         new_fact_table = fact_table
@@ -541,13 +613,23 @@ def load_fact_table(**kwargs):
 
 
 def load_fact_to_postgres(**kwargs):
+    """Loads fact data from datalake gold layer
+      into the datawarehouse.
+
+    Args:
+        **kwargs: Arbitrary keyword arguments, including:
+            - ti: Task instance object for accessing XComs.
+
+    Returns:
+        None
+    """
     ti = kwargs["ti"]
     last_updated_date = ti.xcom_pull(
         task_ids="get_last_updated_date",
         dag_id="load_data_warehouse",
         key="return_value",
     )[0][0]
-    print(f"Fetching data for Last Updated Date: {last_updated_date}")
+    logging.info(f"Fetching data for Last Updated Date: {last_updated_date}")
     con = initialize_azure_extension()
 
     fact = con.sql(
@@ -557,7 +639,7 @@ def load_fact_to_postgres(**kwargs):
         """
     ).df()
 
-    print(f"✅ DataFrame Loaded: {fact.shape[0]} rows, {fact.shape[1]} columns")
+    logging.info(f"✅ DataFrame Loaded: {fact.shape[0]} rows, {fact.shape[1]} columns")
     engine = psql_hook.get_sqlalchemy_engine()
 
     fact.to_sql(
@@ -567,10 +649,21 @@ def load_fact_to_postgres(**kwargs):
         if_exists="replace",
         index=False,
     )
-    print("Successfully Loaded Data to Postgres")
+    logging.info("Successfully Loaded Data to Postgres")
 
 
 def load_dim_table_to_postgres(dim_file_name: str, table_name: str):
+    """
+    A template for loading dimensional data from 
+    datalake gold layer into the datawarehouse.
+
+    Args:
+        **kwargs: Arbitrary keyword arguments, including:
+            - ti: Task instance object for accessing XComs.
+
+    Returns:
+        No
+    """
     con = initialize_azure_extension()
     file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
     dim = con.sql(
@@ -580,10 +673,10 @@ def load_dim_table_to_postgres(dim_file_name: str, table_name: str):
             """
     ).df()
 
-    print(f"✅ {dim_file_name} Loaded: {dim.shape[0]} rows, {dim.shape[1]} columns")
+    logging.info(f"✅ {dim_file_name} Loaded: {dim.shape[0]} rows, {dim.shape[1]} columns")
     engine = psql_hook.get_sqlalchemy_engine()
 
     dim.to_sql(
         name=table_name, schema="chess_dw", con=engine, if_exists="replace", index=False
     )
-    print(f"Successfully Loaded {dim_file_name} Data to Postgres table {table_name}")
+    logging.info(f"Successfully Loaded {dim_file_name} Data to Postgres table {table_name}")

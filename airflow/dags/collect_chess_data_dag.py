@@ -10,6 +10,7 @@ from scripts.python_scripts import *
 
 from airflow import DAG
 
+
 load_dotenv()
 
 default_args = {

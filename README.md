@@ -11,14 +11,14 @@ This project aims to build an ETL pipeline to analyze my personal chess games an
     - Which openings(strategies & variations) have yielded the highest win rates ✅
     - Openings & Variations that frequently lead to losses. ✅
     - Trends in performance over time based on opening. ✅
-- Generate Videos Of Good Games using PGN file and automate upload to Social Media
+- Generate Videos(gifs) Games using PGN file and automate upload to Social Media(Using NoCode)
 - Utilize StockFish API to analyze Game PGN FIles and Generate puzzles for missed wins and Focrced Checkmates
 - Provide insights through a live dashboard.
 
 ---
 
 ## 2.0 Architecture & Workflow
-![Pipeline Architecture](Project_Files/Chess_arch_recording.gif)
+![Pipeline Architecture](readme_images/Chess_arch_recording.gif)
 
 ### Data Flow
 - Airflow pulls data from Chess.com API and stages it in the bronze layer of the data lake
@@ -55,7 +55,7 @@ This project aims to build an ETL pipeline to analyze my personal chess games an
 
 
 ## 4.0  Dimensional Data Model
-![Pipeline Architecture](Project_Files/data_model.png)
+![Pipeline Architecture](readme_images/data_model.png)
 
 
 ## 5.0  **Approach & Pipeline Workflow (Airflow DAGS)**
@@ -68,7 +68,7 @@ This project aims to build an ETL pipeline to analyze my personal chess games an
 4. **Visualization**: Power BI dashboard for insights
 
 ### DAG 1 
-![Dag 2 Image](Project_Files/DAG_1.png)
+![Dag 2 Image](readme_images/DAG_1.png)
 This First Dag 
 - Pulls Data from the CHESS.com website 
 - Loads the Data into the bronze layer in the data lake in it's raw Json Format
@@ -77,7 +77,7 @@ This First Dag
 
 
 ### DAG 2
-![Dag 2 Image](Project_Files/DAG_2.png)
+![Dag 2 Image](readme_images/DAG_2.png)
 - This Final DAG is linked via the airflow dataset feature using the fact_table in the Gold layer. 
 - Immediately the Fact table in the Gold layer is created, The DAG is created. 
 - It First Created the Datawarehouse schema in the Postgres database if it does not already exists.
@@ -89,7 +89,7 @@ This First Dag
 │   ├── 2024-01
 │   └── opening
 ├── Dockerfile
-├── Project_Files # Folder for storing images displayed in readme
+├── readme_images # Folder for storing images displayed in readme
 │   ├── Chess_arch_recording.gif
 │   ├── DAG_1.png
 │   ├── DAG_2.png
