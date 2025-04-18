@@ -2,14 +2,15 @@
 
 ## **1.0 Project Overview**
 
-This project aims to build an ETL pipeline to analyze my personal chess games and provide insights into the effectiveness of various chess openings. The data will be visualized on a live dashboard, enabling continuous tracking and analysis of performance over time. This article documents the preparation phase of the project.
+This project aims to build an ETL pipeline to analyze my personal chess games and provide insights into the effectiveness of various chess openings. The data will be visualized on a live dashboard, enabling continuous tracking and analysis of performance over time.
 
 ### **1.1 Goals and Objectives**
 
-- Analyze chess games(battles) across different time periods to determine:
-    - Which openings(strategies & variations) have yielded the highest win rates.
-    - Openings & Variations that frequently lead to losses.
-    - Trends in performance over time based on opening.
+- Analyze chess games(battles) across different time periods to determine: 
+    - Frequently Played Openings for White & Black across each game type(blitz, bullet, rapid) ✅
+    - Which openings(strategies & variations) have yielded the highest win rates ✅
+    - Openings & Variations that frequently lead to losses. ✅
+    - Trends in performance over time based on opening. ✅
 - Generate Videos Of Good Games using PGN file and automate upload to Social Media
 - Utilize StockFish API to analyze Game PGN FIles and Generate puzzles for missed wins and Focrced Checkmates
 - Provide insights through a live dashboard.
@@ -17,7 +18,7 @@ This project aims to build an ETL pipeline to analyze my personal chess games an
 ---
 
 ## 2.0 Architecture & Workflow
-![Pipeline Architecture](Project_Files/Chess_ETL_architecture_.gif)
+![Pipeline Architecture](Project_Files/Chess_arch_recording.gif)
 
 ### Data Flow
 - Airflow pulls data from Chess.com API and stages it in the bronze layer of the data lake
@@ -89,8 +90,7 @@ This First Dag
 │   └── opening
 ├── Dockerfile
 ├── Project_Files # Folder for storing images displayed in readme
-│   ├── Chess_ETL_architecture.mp4
-│   ├── Chess_ETL_architecture_.gif
+│   ├── Chess_arch_recording.gif
 │   ├── DAG_1.png
 │   ├── DAG_2.png
 │   └── data_model.png
@@ -129,4 +129,4 @@ This First Dag
     ├── pyvenv.cfg
     └── share
 
-28 directories, 16 files
+28 directories, 15 files
