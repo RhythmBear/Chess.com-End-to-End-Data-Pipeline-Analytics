@@ -5,8 +5,8 @@ from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from dotenv import load_dotenv
 from pendulum import duration
-from scripts.datasets import my_fact_file
-from scripts.python_scripts import *
+from utils.datasets import my_fact_file
+from utils.python_scripts import *
 
 from airflow import DAG
 

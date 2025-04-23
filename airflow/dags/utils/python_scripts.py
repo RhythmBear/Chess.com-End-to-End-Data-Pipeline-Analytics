@@ -9,7 +9,7 @@ from airflow.models import Variable
 from airflow.providers.microsoft.azure.hooks.wasb import WasbHook
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from dotenv import load_dotenv
-from scripts import udfs
+from utils import udfs
 
 # Load environment variables from .env file
 load_dotenv()
@@ -392,12 +392,8 @@ def load_dim_time_control(**kwargs):
     con = initialize_azure_extension()
 
     dim_file_name = "gold/dim_time_control.parquet"
-    source_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
-    )
-    destination_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
-    )
+    source_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{filename}"
+    destination_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
     # Check existence of file in Azure storage
     file_exists = az_hook.check_for_blob(
         container_name=container_name, blob_name=dim_file_name
@@ -446,9 +442,7 @@ def load_dim_results(**kwargs):
     con = initialize_azure_extension()
     dim_file_name = "gold/dim_results.parquet"
 
-    destination_file_path = (
-        f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
-    )
+    destination_file_path = f"az://rbchesssa.blob.core.windows.net/chess-etl-files/{dim_file_name}"
     # Check existence of file in Azure storage
     file_exists = az_hook.check_for_blob(
         container_name=container_name, blob_name=dim_file_name
