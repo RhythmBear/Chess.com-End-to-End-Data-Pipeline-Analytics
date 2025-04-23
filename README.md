@@ -1,49 +1,127 @@
-Overview
-========
+# End-to-End Chess.com ETL and Analytics Pipeline
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+## **Table of Contents**
+1. [Project Overview](#10-project-overview)
+   - [Goals and Objectives](#11-goals-and-objectives)
+   - [How to Navigae Project Directory](#12-navigate-project-directory)
+2. [Architecture & Workflow](#20-architecture--workflow)
+   - [Data Flow](#data-flow)
+   - [Tools & Technologies](#tools-&-technologies)
+3. [Data Sources & Storage](#30-data-sources--storage)
+   - [Data Sources](#data-sources)
+   - [Storage Structure](#storage-structure)
+4. [Dimensional Data Model](#40-dimensional-data-model)
+5. [Approach & Pipeline Workflow (Airflow DAGs)](#50-approach--pipeline-workflow-airflow-dags)
+   - [Workflow Steps](#workflow-steps)
+   - [DAG 1](#dag-1)
+   - [DAG 2](#dag-2)
 
-Project Contents
-================
 
-Your Astro project contains the following files and folders:
+## 1.0 Project Overview
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes two example DAGs:
-    - `example_dag_basic`: This DAG shows a simple ETL data pipeline example with three TaskFlow API tasks that run daily.
-    - `example_dag_advanced`: This advanced DAG showcases a variety of Airflow features like branching, Jinja templates, task groups and several Airflow operators.
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+This project aims to build an ETL pipeline to analyze my personal chess games and provide insights into the effectiveness of various chess openings. The data will be visualized on a live dashboard, enabling continuous tracking and analysis of performance over time.
 
-Deploy Your Project Locally
-===========================
+<!-- ### 1.1 Video Introduction -->
 
-1. Start Airflow on your local machine by running 'astro dev start'.
+### 1.1 Goals and Objectives
 
-This command will spin up 4 Docker containers on your machine, each for a different Airflow component:
+- Analyze chess games(battles) across different time periods to determine: 
+    - Frequently Played Openings for White & Black across each game type(blitz, bullet, rapid) ✅
+    - Which openings(strategies & variations) have yielded the highest win rates & loss rates in order to inform what variation i need to study to improve my top played openings✅
+    - Openings & Variations that frequently lead to losses. ✅
+    - Trends in performance over time based on opening. ✅
+- Generate Videos(gifs) of Games using PGN file and automate upload to Social Media(Using NoCode)
+- Utilize StockFish API to analyze Game PGN FIles and Generate puzzles for missed wins and Focrced Checkmates
+- Provide insights through a live dashboard.
 
-- Postgres: Airflow's Metadata Database
-- Webserver: The Airflow component responsible for rendering the Airflow UI
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+### 1.2 Navigate Project Directory
+Root Folder 
+```bash
+.
+├── README.md # Project Documentation File
+├── airflow # Folder for Airflow Project Containing dags and airflow config files
+├── dev_files # Folder used local development and testing functions
+└── readme_images # images for the README file
 
-2. Verify that all 4 Docker containers were created by running 'docker ps'.
+```
+---
 
-Note: Running 'astro dev start' will start your project with the Airflow Webserver exposed at port 8080 and Postgres exposed at port 5432. If you already have either of those ports allocated, you can either [stop your existing Docker containers or change the port](https://docs.astronomer.io/astro/test-and-troubleshoot-locally#ports-are-not-available).
+Airflow Folder structure
+```bash
+├── Dockerfile # File used to create airflow docker container
+├── config
+├── dags
+│   ├── collect_chess_data_dag.py # File containg DAG 1 definition
+│   ├── load_data_warehouse_dag.py # File containing DAG 2 Definition
+│   ├── sql # Contains SQL scripts used to query database
+│   └── utils # Contains Python scripts, UDF's for Transformation stage of pipeline with duckdb
+├── docker-compose.yaml # File used to deploy Airflow instance 
+└── requirements.txt # python dependenciees
 
-3. Access the Airflow UI for your local Airflow project. To do so, go to http://localhost:8080/ and log in with 'admin' for both your Username and Password.
+```
 
-You should also be able to access your Postgres Database at 'localhost:5432/postgres'.
+## 2.0 Architecture & Workflow
+![Pipeline Architecture](readme_images/Chess_arch_recording.gif)
 
-Deploy Your Project to Astronomer
-=================================
+### Data Flow
+- Airflow pulls data from Chess.com API and stages it in the bronze layer of the data lake
+- Duckdb Transforms and cleans data in bronze layer and then stores it in Silver layer
+- Finally Duckdb Performs final aggregations and stores data in the dimensinoal model format in the gold layer. 
+- Airflow loads data from the Gold layer into Data Warehouse.
+- PowerBI is used to build dashboards and reports   
+### Tools & Technologies
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://docs.astronomer.io/cloud/deploy-code/
+| Category | Tools & Technologies Used |
+| --- | --- |
+| **Orchestration** | Apache Airflow |
+| **Data Lake & Warehouse** | Azure Blob Storage, PostgreSQL |
+| **Processing Engine** | DuckDB |
+| **ETL Development** | Python, SQL |
+| **Dashboarding** | Power BI |
+| **Infrastructure** | Docker, Azure Services |
 
-Contact
-=======
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+
+## 3.0 Data Sources & Storage
+
+### **Data Sources:**
+
+- **Chess API**: Fetches game records
+
+### **Storage Structure:**
+
+| Layer | Description |
+| --- | --- |
+| **Bronze** | Raw chess data (JSON) |
+| **Silver** | Cleaned and transformed data (Parquet) |
+| **Gold** | Data for fact and dimensional tables (PostgreSQL) |
+
+
+## 4.0  Dimensional Data Model
+![Pipeline Architecture](readme_images/data_model.png)
+
+
+## 5.0  **Approach & Pipeline Workflow (Airflow DAGS)**
+
+### **Workflow Steps:**
+
+1. **Extract**: Fetch chess game data from API and load unto Data Lake
+2. **Transform**: Clean, structure, and 
+3. **Load**: Store data into PostgreSQL.
+4. **Visualization**: Power BI dashboard for insights
+
+### DAG 1 
+![Dag 2 Image](readme_images/DAG_1.png)
+This First Dag 
+- Pulls Data from the CHESS.com website 
+- Loads the Data into the bronze layer in the data lake in it's raw Json Format
+- Once the data arrives, The data is transformed and cleaned using DuckDB using SQL Queries alongside User Defined Functions in the dags/scripts/python_scripts.py folder and then the data is loaded back into the Silver Layer of the Datalake
+- The data is then finally converted to suit the data warehouse schema using the Fact table and dimensional table displayed earlier and then loaded into the Gold Layer of the datalake.
+
+
+### DAG 2
+![Dag 2 Image](readme_images/DAG_2.png)
+- This Final DAG is linked via the airflow dataset feature using the fact_table in the Gold layer. 
+- Immediately the Fact table in the Gold layer is created, The DAG is created. 
+- It First Created the Datawarehouse schema in the Postgres database if it does not already exists.
+- Then it loads the data from the dim and fact tables in the gold layer into the postgres database.
