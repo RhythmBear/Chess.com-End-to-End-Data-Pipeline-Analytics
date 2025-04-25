@@ -1,5 +1,6 @@
 # End-to-End Chess.com ETL and Analytics Pipeline
-
+### Power BI Dashboard Demo
+![Dashboard Preview](readme_images/chess-etl-dashboard-demo.gif)
 ## **Table of Contents**
 1. [Project Overview](#10-project-overview)
    - [Goals and Objectives](#11-goals-and-objectives)
@@ -18,7 +19,6 @@
 
 
 ## 1.0 Project Overview
-
 This project aims to build an ETL pipeline to analyze my personal chess games and provide insights into the effectiveness of various chess openings. The data will be visualized on a live dashboard, enabling continuous tracking and analysis of performance over time.
 
 <!-- ### 1.1 Video Introduction -->

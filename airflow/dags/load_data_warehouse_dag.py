@@ -6,7 +6,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from pendulum import duration
 from utils.datasets import my_fact_file
-from scripts.python_scripts import *
+from utils.python_scripts import *
 
 from airflow import DAG
 
