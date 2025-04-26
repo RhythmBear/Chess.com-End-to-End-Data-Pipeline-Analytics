@@ -1,4 +1,4 @@
-# End-to-End Chess.com ETL and Analytics Pipeline
+# Chess.com End-to-End Data Pipeline & Analytics
 ### Power BI Dashboard Demo
 ![Dashboard Preview](readme_images/chess-etl-dashboard-demo.gif)
 ## **Table of Contents**
