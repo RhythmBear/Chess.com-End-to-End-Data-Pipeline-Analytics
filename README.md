@@ -16,7 +16,7 @@
    - [Workflow Steps](#workflow-steps)
    - [DAG 1](#dag-1)
    - [DAG 2](#dag-2)
-
+6. [Lessons Learnt and Possible Improvements](#60-lessons-learned-and-possible-future-improvements)
 
 ## 1.0 Project Overview
 This project aims to build an ETL pipeline to analyze my personal chess games and provide insights into the effectiveness of various chess openings. The data will be visualized on a live dashboard, enabling continuous tracking and analysis of performance over time.
@@ -125,3 +125,21 @@ This First Dag
 - Immediately the Fact table in the Gold layer is created, The DAG is created. 
 - It First Created the Datawarehouse schema in the Postgres database if it does not already exists.
 - Then it loads the data from the dim and fact tables in the gold layer into the postgres database.
+
+## 6.0 Lessons Learned and Possible Future Improvements
+Here i'm highligting my key lessons learnt so far and what i would do differently if i had to rebuild this all over again. 
+1. **Direct Integration with Azure Storage Using DuckDB** \
+Instead of loading files locally, I learned that DuckDB's Azure extension can query Azure Blob Storage directly. This would simplify the pipeline and reduce both storage and compute costs.
+
+2. Building More Dynamic Dashboards with Power BI \
+As someone not originally from a data analytics background, working with Power BI taught me the importance of building dynamic measures (like first and last ratings) and better understanding DAX for fully responsive dashboards.
+
+3. Evolving Toward a Lakehouse Architecture with dbt \
+Rather than maintaining a separate data warehouse, a future improvement would be adopting a Lakehouse approach, querying the Data Lake directly using DuckDB, and managing transformations declaratively with dbt. This would improve and also allow me to go more open source instead of being heavy on azure. 
+ 
+4. Using Airflow's Dataset-Triggered Scheduling \
+Learnt how to connect 2 different dags using Airflow's Dataset scheduling feature. 
+
+5. Structuring Documentation Early \
+Creating good documentation early (file structure diagrams, technology lists, usage instructions) made the project much easier to scale and will be a priority from the start in future projects.
+
