@@ -1,4 +1,5 @@
 # Chess.com End-to-End Data Pipeline & Analytics
+Watch Video Demo here - [Video Demo♟️📽️](https://youtu.be/2B42mgtU_oM)
 ### Power BI Dashboard Demo
 ![Dashboard Preview](readme_images/chess-etl-dashboard-demo.gif)
 ## **Table of Contents**
